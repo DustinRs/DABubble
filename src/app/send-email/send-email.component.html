@@ -1,38 +1,46 @@
 <section>
-    <div class="logo">
-      <img src="assets/imgs/logo.png" alt="" />
-      <h1>DABubble</h1>
-    </div>
-  
-    <mat-card>
-      <button class="backButton" (click)="back()">
-        <mat-icon>arrow_left</mat-icon>
-      </button>
-      <h1>Passwort zurücksetzen</h1>
+  <div class="logo">
+    <img src="assets/imgs/logo.png" alt="" />
+    <h1>DABubble</h1>
+  </div>
 
-      <p>Bitte geben Sie Ihre E-Mail-Adresse ein.</p>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>E-mail</mat-label>
-        <input (input)="input = true"
-          matInput
-          placeholder="beispielname@email.de"
-          
-        />
-        <mat-icon matSuffix>mail</mat-icon>
-      </mat-form-field>
-      <p>Wir senden Ihnen eine E-Mail, über die Sie Ihr Passwort ändern können.</p>
-      <div>
-        <button (click)="sendMail()" [disabled]="enableButton()" mat-raised-button color="primary">
-          Weiter
-        </button>
-      </div>
-    </mat-card>
-    <div class="linksBottom">
-      <a href="">Impressum</a>
-      <a href="">Datenschutz</a>
+  <mat-card>
+    <button class="backButton" (click)="back()">
+      <mat-icon>arrow_left</mat-icon>
+    </button>
+    <h1>Passwort zurücksetzen</h1>
+
+    <p>Bitte geben Sie Ihre E-Mail-Adresse ein.</p>
+
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input
+        (input)="input = true"
+        matInput
+        placeholder="beispielname@email.de"
+      />
+      <mat-icon matSuffix>mail</mat-icon>
+    </mat-form-field>
+    <p>
+      Wir senden Ihnen eine E-Mail, über die Sie Ihr Passwort ändern können.
+    </p>
+    <div>
+      <button
+        (click)="sendMail()"
+        [disabled]="enableButton()"
+        mat-raised-button
+        color="primary"
+      >
+        E-Mail senden
+      </button>
     </div>
-    <div id="overlay" class="overlay">
-        <h1>E-mail gesendet!</h1>
-      </div>
-  </section>
+  </mat-card>
+  <div class="linksBottom">
+    <a href="">Impressum</a>
+    <a href="">Datenschutz</a>
+  </div>
+  <div id="overlay" class="overlay">
+    <img src="assets/imgs/send.png" alt="" />
+    <h1>E-mail gesendet!</h1>
+  </div>
+</section>

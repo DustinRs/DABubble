@@ -58,6 +58,9 @@
   
     .overlay {
       position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 24px;
       right: -500px;
       bottom: 24px;
       background-color: #444DF2;

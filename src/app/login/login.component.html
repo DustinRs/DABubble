@@ -3,7 +3,7 @@
     <img src="assets/imgs/1. Logo animation.png" alt="">
   </div> -->
   <div class="logo">
-    <img src="assets/imgs/logo.png" alt="">
+    <img src="assets/imgs/logo.png" alt="" />
     <h1>DABubble</h1>
   </div>
   <div class="signUpDiv">
@@ -16,34 +16,20 @@
       Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit
       verwendest.
     </p>
-    <mat-form-field appearance="outline">
-      <mat-label>E-mail</mat-label>
+
+    <div class="inputDiv">
       <input
-        matInput
         placeholder="beispielname@email.de"
         [(ngModel)]="userLogin.email"
       />
       <mat-icon matSuffix>mail</mat-icon>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Passwort</mat-label>
-      <input
-        matInput
-        [type]="hide ? 'password' : 'text'"
-        placeholder="Beispiel1!"
-        [(ngModel)]="userLogin.password"
-      />
-      <button
-        mat-icon-button
-        matSuffix
-        (click)="hide = !hide"
-        [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide"
-      >
-        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-        <mat-icon matSuffix>lock</mat-icon>
-      </button>
-    </mat-form-field>
+    </div>
+
+    <div class="inputDiv">
+      <input placeholder="Passwort" [(ngModel)]="userLogin.password" />
+
+      <mat-icon matSuffix>lock</mat-icon>
+    </div>
 
     <a routerLink="/send-email">Passwort vergessen?</a>
 
