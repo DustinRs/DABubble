@@ -1,0 +1,91 @@
+section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #ECEEFE;
+  > mat-card {
+    width: 480px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+}
+.logoDiv {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  background-color: #313ae5;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  > img {
+    position: relative;
+      width: 640px;
+      animation: startScreen 1s ease 1s 1 forwards;
+  }
+}
+
+@keyframes startScreen {
+  0% {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  100% {
+    top: -360px;
+    right: 360px;
+    opacity: 0;
+  }
+}
+
+.logo {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    >img{
+        width: 80px;
+    }
+}
+
+.signUpDiv {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.line {
+  width: 100%;
+  background-color: lightgray;
+  height: 1px;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.linksBottom {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  gap: 120px;
+}

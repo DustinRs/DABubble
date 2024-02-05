@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "dabubble-60ed0": {
+      "hosting": {
+        "dabubble": [
+          "dabubble-60ed0"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "dabubble-60ed0"
+  }
+}

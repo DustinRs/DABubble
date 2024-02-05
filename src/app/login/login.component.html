@@ -1,0 +1,70 @@
+<section>
+  <!-- <div class="logoDiv">
+    <img src="assets/imgs/1. Logo animation.png" alt="">
+  </div> -->
+  <div class="logo">
+    <img src="assets/imgs/logo.png" alt="">
+    <h1>DABubble</h1>
+  </div>
+  <div class="signUpDiv">
+    <p>Neu bei DABubble?</p>
+    <a routerLink="/signUp">Konto erstellen</a>
+  </div>
+  <mat-card>
+    <h1>Anmeldung</h1>
+    <p>
+      Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit
+      verwendest.
+    </p>
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input
+        matInput
+        placeholder="beispielname@email.de"
+        [(ngModel)]="userLogin.email"
+      />
+      <mat-icon matSuffix>mail</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Passwort</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        placeholder="Beispiel1!"
+        [(ngModel)]="userLogin.password"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        <mat-icon matSuffix>lock</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <a href="">Passwort vergessen?</a>
+
+    <div class="w-100 d-flex">
+      <div class="line"></div>
+      ODER
+      <div class="line"></div>
+    </div>
+    <a href="">Anmelden mit Google</a>
+    <div>
+      <button (click)="login()" mat-raised-button color="primary">
+        Anmelden
+      </button>
+      <button (click)="loginGuest()" mat-stroked-button color="primary">
+        Gäste-Login
+      </button>
+    </div>
+  </mat-card>
+  <div class="linksBottom">
+    <a href="">Impressum</a>
+    <a href="">Datenschutz</a>
+  </div>
+</section>
+<router-outlet></router-outlet>
