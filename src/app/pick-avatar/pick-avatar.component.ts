@@ -54,7 +54,10 @@ export class PickAvatarComponent {
     await updateDoc(editedUser, {
       avatar: this.imgPath,
     });
-    this.router.navigateByUrl('login');
+    this.showPopUp();
+    setTimeout(() => {
+      this.router.navigateByUrl('login');
+    }, 3000);
   }
 
   back() {
@@ -68,8 +71,13 @@ export class PickAvatarComponent {
 
   enableButton() {
     if (this.avatarPicked) {
-      return false
+      return false;
     }
-    return true
+    return true;
+  }
+
+  showPopUp() {
+    let overlay = document.getElementById('overlay');
+    overlay?.classList.add('right');
   }
 }
