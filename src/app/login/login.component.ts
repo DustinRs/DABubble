@@ -78,10 +78,10 @@ export class LoginComponent implements OnInit {
     let arrayFiltered = user.filter(
       item => item['email'] === this.userLogin.email
       );
-      console.log(arrayFiltered)
+      
     let password: any = passwordFilterd[0];
     let mail: any = mailFiltered[0];
-    console.log(this.userLogin);
+    
     if (
       mail == undefined ||
       password == undefined ||
