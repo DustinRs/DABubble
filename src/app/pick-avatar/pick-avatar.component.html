@@ -6,14 +6,14 @@
 
   <mat-card>
     <button class="backButton" (click)="back()">
-      <mat-icon>arrow_left</mat-icon>
+      <mat-icon>arrow_back</mat-icon>
     </button>
     <h1>Wähle deinen Avatar</h1>
 
     <img *ngIf="avatarPicked == false" src="assets/imgs/profileEmpty.png" alt="" />
     <img class="avatar" *ngIf="avatarPicked == true" src="{{imgPath}}" alt="">
-    <h2>Name</h2>
-    <p>Aus der Liste wählen</p>
+    <h2>{{userName}}</h2>
+    <p>Aus der Liste wählen:</p>
     <mat-list>
       <img (click)="setAvatar('9')" matListItemAvatar src="assets/imgs/00c.Charaters (2).png" />
       <img (click)="setAvatar('10')" matListItemAvatar src="assets/imgs/00c.Charaters (1).png" />
@@ -22,10 +22,13 @@
       <img (click)="setAvatar('7')" matListItemAvatar src="assets/imgs/00c.Charaters (5).png" />
       <img (click)="setAvatar('8')" matListItemAvatar src="assets/imgs/00c.Charaters (6).png" />
     </mat-list>
-    eigenes Bild verwenden
+    <div class="d-flex">
+      eigenes Bild verwenden:
     <button mat-stroked-button color="primary">Datei hochladen</button>
+    </div>
+    
 
-    <div>
+    <div class="buttonDiv">
       <button (click)="saveUser()" [disabled]="enableButton()" mat-raised-button color="primary">
         Weiter
       </button>

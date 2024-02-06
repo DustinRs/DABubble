@@ -4,15 +4,52 @@ section {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #ECEEFE;
+  background-color: #eceefe;
   > mat-card {
     width: 480px;
-    padding: 16px;
+    padding: 48px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 16px;
+    gap: 32px;
+    border-radius: 32px;
+    > h1 {
+      color: #444df2;
+      font-weight: 700;
+      font-size: 40px;
+    }
+  }
+}
+
+.inputDiv {
+  position: relative;
+  width: 100%;
+  > input {
+    position: relative;
+    width: 100%;
+    background-color: #eceefe;
+    border: unset;
+    border-radius: 32px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    text-align: center;
+    &:hover {
+      cursor: pointer;
+      outline: 1px solid darkgray;
+    }
+    &::placeholder {
+      text-align: center;
+    }
+    &:focus {
+      outline: 1px solid #797ef3;
+      text-align: center;
+    }
+  }
+  > mat-icon {
+    position: absolute;
+    top: 12px;
+    left: 48px;
   }
 }
 
@@ -28,6 +65,11 @@ section {
   }
 }
 
+a {
+  text-decoration: none;
+  color: #797ef3;
+}
+
 .linksBottom {
   position: absolute;
   bottom: 40px;
@@ -36,11 +78,45 @@ section {
 }
 
 .backButton {
-    position: absolute;
-    top: 16px;
-    left: 16px;
+  position: absolute;
+  top: 48px;
+  left: 32px;
+  border: unset;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  &:hover {
+    cursor: pointer;
+    background-color: #eceefe;
+  }
 }
 
 .example-margin {
   margin: 0 12px;
+}
+
+.buttonDiv {
+  position: relative;
+  width: 100%;
+
+  > button {
+    position: relative;
+    top: 0px;
+    left: 148px;
+  }
+}
+
+button {
+  border-radius: 32px;
+}
+
+mat-error {
+  color: red;
+  font-size: 10px;
+}
+
+.green {
+  color: green;
 }

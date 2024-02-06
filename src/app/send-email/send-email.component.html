@@ -6,27 +6,31 @@
 
   <mat-card>
     <button class="backButton" (click)="back()">
-      <mat-icon>arrow_left</mat-icon>
+      <mat-icon>arrow_back</mat-icon>
     </button>
     <h1>Passwort zurücksetzen</h1>
 
     <p>Bitte geben Sie Ihre E-Mail-Adresse ein.</p>
-
-    <mat-form-field appearance="outline">
-      <mat-label>E-mail</mat-label>
-      <input
-        (input)="input = true"
-        matInput
-        placeholder="beispielname@email.de"
-      />
+    <div class="inputDiv">
+      <input [formControl]="emailFormControl" placeholder="beispielname@email.de" [(ngModel)]="this.mailAdress" />
       <mat-icon matSuffix>mail</mat-icon>
-    </mat-form-field>
-    <p>
+      @if (!emailFormControl.valid &&
+      !emailFormControl.hasError('required')) {
+      <mat-error>*Bitte nutze eine gültige E-Mail-Adresse.</mat-error>
+      } @if (emailFormControl.hasError('required')) {
+      <mat-error>*E-Mail wird benötigt.</mat-error>
+      } @if (emailFormControl.valid &&
+      !emailFormControl.hasError('required')) {
+      <mat-error class="green">*E-Mail ist gültig.</mat-error>
+      }
+    </div>
+
+    <p class="grey">
       Wir senden Ihnen eine E-Mail, über die Sie Ihr Passwort ändern können.
     </p>
-    <div>
+    <div class="buttonDiv">
       <button
-        (click)="sendMail()"
+        (click)="sendEmail(this.mailAdress)"
         [disabled]="enableButton()"
         mat-raised-button
         color="primary"

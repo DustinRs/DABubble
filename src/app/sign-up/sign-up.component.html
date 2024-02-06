@@ -1,70 +1,107 @@
 <section>
-    <div class="logo">
-      <img src="assets/imgs/logo.png" alt="">
-      <h1>DABubble</h1>
+  <div class="logo">
+    <img src="assets/imgs/logo.png" alt="" />
+    <h1>DABubble</h1>
+  </div>
+
+  <mat-card>
+    <button class="backButton" (click)="back()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>Konto erstellen</h1>
+    <p>
+      Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues
+      DABubble-Konto.
+    </p>
+    <div class="inputDiv">
+      <input
+        type="text"
+        [formControl]="nameFormControl"
+        (input)="inputName = true"
+        placeholder="Name und Nachname"
+        [(ngModel)]="user.Name"
+      />
+      <mat-icon matSuffix>person</mat-icon>
+      <mat-error *ngIf="nameFormControl.hasError('required')">
+        *Name wird benötigt.
+      </mat-error>
+      <mat-error *ngIf="!nameFormControl.valid && !nameFormControl.hasError('required')">
+        *Bitte Vor-und Nachnamen eintragen.
+      </mat-error>
+      <mat-error class="green" *ngIf="nameFormControl.valid && !nameFormControl.hasError('required')">
+        *Name ist gültig.
+      </mat-error>
     </div>
-    
-    <mat-card>
-        <button class="backButton" (click)="back()"><mat-icon>arrow_left</mat-icon></button>
-      <h1>Konto erstellen</h1>
-      <p>
-        Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues DABubble-Konto.
-      </p>
-      <mat-form-field appearance="outline">
-        <mat-label>Name und Nachname</mat-label>
-        <input
-          matInput
-          (input)="inputName=true"
-          placeholder="Name und Nachname"
-          [(ngModel)]="user.Name"
-        />
-        <mat-icon matSuffix>mail</mat-icon>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>E-mail</mat-label>
-        <input
-          matInput
-          (input)="inputMail=true"
-          placeholder="beispielname@email.de"
-          [(ngModel)]="user.email"
-        />
-        <mat-icon matSuffix>mail</mat-icon>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Passwort</mat-label>
-        <input
-          matInput
-          (input)="inputPw=true"
-          [type]="hide ? 'password' : 'text'"
-          placeholder="Beispiel1!"
-          [(ngModel)]="user.password"
-        />
-        <button
-          mat-icon-button
-          matSuffix
-          (click)="hide = !hide"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide"
-        >
-          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-          <mat-icon matSuffix>lock</mat-icon>
-        </button>
-      </mat-form-field>
-      <div>
-        <mat-checkbox (input)="inputCheck = true" color="primary" class="example-margin"></mat-checkbox>
-        Ich stimme der <a href="">Datenschutzerklärung</a> zu.
-      </div>
-      
-      
-      <div>
-        <button id="button" (click)="saveUser()" [disabled]="enableButton()" mat-raised-button color="primary">
-          Weiter
-        </button>
-        
-      </div>
-    </mat-card>
-    <div class="linksBottom">
-      <a href="">Impressum</a>
-      <a href="">Datenschutz</a>
+
+    <div class="inputDiv">
+      <input
+        [formControl]="emailFormControl"
+        (input)="inputMail = true"
+        placeholder="beispielname@email.de"
+        [(ngModel)]="user.email"
+      />
+      <mat-icon matSuffix>mail</mat-icon>
+      @if (!emailFormControl.valid &&
+      !emailFormControl.hasError('required')) {
+      <mat-error>*Bitte nutze eine gültige E-Mail-Adresse.</mat-error>
+      } @if (emailFormControl.hasError('required')) {
+      <mat-error>*E-Mail wird benötigt.</mat-error>
+      } @if (emailFormControl.valid &&
+      !emailFormControl.hasError('required')) {
+      <mat-error class="green">*E-Mail ist gültig.</mat-error>
+      }
     </div>
-  </section>
+
+    <div class="inputDiv">
+      <input
+        [formControl]="passwordFormControl"
+        (input)="inputPw = true"
+        placeholder="Passwort"
+        [(ngModel)]="user.password"
+      />
+      <mat-error *ngIf="passwordFormControl.hasError('required')"
+        >*Passwort wird benötigt.</mat-error
+      >
+      <mat-error
+        *ngIf="
+          !passwordFormControl.valid &&
+          !passwordFormControl.hasError('required')
+        "
+        >*Einen Groß- & Kleinbuchstaben / eine Zahl und ein
+        Sonderzeichen. (Beispiel1!)</mat-error
+      >
+      <mat-error
+        class="green"
+        *ngIf="passwordFormControl.valid && validatePassword()"
+        >*Passwort ist gültig.</mat-error
+      >
+      <mat-icon matSuffix>lock</mat-icon>
+      <mat-icon matSuffix>lock</mat-icon>
+    </div>
+
+    <div>
+      <mat-checkbox
+        (input)="inputCheck = true"
+        color="primary"
+        class="example-margin"
+      ></mat-checkbox>
+      Ich stimme der <a href="">Datenschutzerklärung</a> zu.
+    </div>
+
+    <div class="buttonDiv">
+      <button
+        id="button"
+        (click)="saveUser()"
+        [disabled]="enableButton()"
+        mat-raised-button
+        color="primary"
+      >
+        Weiter
+      </button>
+    </div>
+  </mat-card>
+  <div class="linksBottom">
+    <a href="">Impressum</a>
+    <a href="">Datenschutz</a>
+  </div>
+</section>

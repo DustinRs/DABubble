@@ -35,11 +35,23 @@ export class PickAvatarComponent {
   firestore: Firestore = inject(Firestore);
   items$: Observable<any[]>;
   user!: User;
+  userName: any;
 
   constructor(private router: Router) {
     const aCollection = collection(this.firestore, 'RegisteredUsers');
     this.items$ = collectionData(aCollection);
   }
+
+  async ngOnInit() {
+    const querySnapshot = await getDocs(
+      collection(this.firestore, 'RegisteredUsers')
+    );
+    let user = querySnapshot.docs.map((doc) => doc.data());
+    let userFiltered = user.filter((u) => u['avatar'] === '');
+    let userName = userFiltered['0']['Name'];
+    this.userName = userName;
+  }
+
   async saveUser() {
     const querySnapshot = await getDocs(
       collection(this.firestore, 'RegisteredUsers')

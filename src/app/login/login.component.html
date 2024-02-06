@@ -19,15 +19,46 @@
 
     <div class="inputDiv">
       <input
+        [formControl]="emailFormControl"
         placeholder="beispielname@email.de"
         [(ngModel)]="userLogin.email"
+        ngModel
+        [email]="false"
       />
       <mat-icon matSuffix>mail</mat-icon>
+      @if (!emailFormControl.valid &&
+      !emailFormControl.hasError('required')) {
+      <mat-error>*Bitte nutze eine gültige E-Mail-Adresse.</mat-error>
+      } @if (emailFormControl.hasError('required')) {
+      <mat-error>*E-Mail wird benötigt.</mat-error>
+      } @if (emailFormControl.valid &&
+      !emailFormControl.hasError('required')) {
+      <mat-error class="green">*E-Mail ist gültig.</mat-error>
+      }
     </div>
 
     <div class="inputDiv">
-      <input placeholder="Passwort" [(ngModel)]="userLogin.password" />
-
+      <input
+        [formControl]="passwordFormControl"
+        placeholder="Passwort"
+        [(ngModel)]="userLogin.password"
+      />
+      <mat-error *ngIf="passwordFormControl.hasError('required')"
+        >*Passwort wird benötigt.</mat-error
+      >
+      <mat-error
+        *ngIf="
+          !passwordFormControl.valid &&
+          !passwordFormControl.hasError('required')
+        "
+        >*Einen Groß- & Kleinbuchstaben / eine Zahl und ein
+        Sonderzeichen. (Beispiel1!)</mat-error
+      >
+      <mat-error
+        class="green"
+        *ngIf="passwordFormControl.valid && validatePassword()"
+        >*Passwort ist gültig.</mat-error
+      >
       <mat-icon matSuffix>lock</mat-icon>
     </div>
 
@@ -38,8 +69,10 @@
       ODER
       <div class="line"></div>
     </div>
-    <a href="">Anmelden mit Google</a>
-    <div>
+    <a id="googleLink" class="googleLink" href=""
+      ><img src="assets/imgs/Google.png" alt="" /> Anmelden mit Google</a
+    >
+    <div class="buttonDiv">
       <button (click)="login()" mat-raised-button color="primary">
         Anmelden
       </button>

@@ -1,1 +1,39 @@
-<button (click)="logout()">Log out</button>
+<section>
+  <header>
+    <div class="logo">
+      <img src="assets/imgs/logo.png" alt="" />
+      <h1>DABubble</h1>
+    </div>
+    <input type="search" />
+    <div class="profileDiv">
+      <h1 *ngIf="!googleAcc">{{ userInfo.Name }}</h1>
+      <h1 *ngIf="googleAcc">{{ userInfo.name }}</h1>
+      <img *ngIf="!googleAcc" src="{{ userInfo.avatar }}" alt="" />
+      <img *ngIf="googleAcc" src="{{ userInfo.picture }}" alt="" />
+    </div>
+    <button (click)="logout()">Log out</button>
+  </header>
+  <mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <h1>links</h1>
+    </mat-drawer>
+  <mat-card>
+    Content
+</mat-card>
+
+<mat-drawer #drawer2 class="example-sidenav" position="end" mode="side">
+    <h1>rechts
+    </h1>
+</mat-drawer>
+<div class="example-sidenav-content">
+  <button type="button" mat-button (click)="drawer.toggle()">
+    Toggle sidenav
+  </button>
+</div>
+<div class="example-sidenav-content">
+    <button type="button" mat-button (click)="drawer2.toggle()">
+      Toggle sidenav
+    </button>
+  </div>
+  </mat-drawer-container>
+</section>
