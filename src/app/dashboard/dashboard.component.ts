@@ -1,13 +1,25 @@
+declare let google: any;
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [MatSidenavModule, MatCardModule, CommonModule],
+  imports: [
+    MatSidenavModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    CommonModule,
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
@@ -27,6 +39,7 @@ export class DashboardComponent {
   }
 
   logout() {
+    google.accounts.id.disableAutoSelect();
     sessionStorage.removeItem('loggedInUser');
     this.router.navigateByUrl('');
   }

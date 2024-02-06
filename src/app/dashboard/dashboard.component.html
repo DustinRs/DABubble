@@ -5,35 +5,46 @@
       <h1>DABubble</h1>
     </div>
     <input type="search" />
-    <div class="profileDiv">
+    <div class="profileDiv" [matMenuTriggerFor]="beforeMenu">
       <h1 *ngIf="!googleAcc">{{ userInfo.Name }}</h1>
       <h1 *ngIf="googleAcc">{{ userInfo.name }}</h1>
       <img *ngIf="!googleAcc" src="{{ userInfo.avatar }}" alt="" />
       <img *ngIf="googleAcc" src="{{ userInfo.picture }}" alt="" />
+      <mat-icon>expand_more</mat-icon>
     </div>
-    <button (click)="logout()">Log out</button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+      <button mat-menu-item>Profil</button>
+      <button mat-menu-item (click)="logout()">Log out</button>
+    </mat-menu>
   </header>
-  <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
+  <mat-drawer-container class="content-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" opened mode="side">
       <h1>links</h1>
     </mat-drawer>
-  <mat-card>
-    Content
-</mat-card>
+    <mat-drawer-content>
+      <div>
+        <h1>hallo</h1>
+      </div>
+    </mat-drawer-content>
 
-<mat-drawer #drawer2 class="example-sidenav" position="end" mode="side">
-    <h1>rechts
-    </h1>
-</mat-drawer>
-<div class="example-sidenav-content">
-  <button type="button" mat-button (click)="drawer.toggle()">
-    Toggle sidenav
-  </button>
-</div>
-<div class="example-sidenav-content">
+    <mat-drawer
+      #drawer2
+      class="example-sidenav"
+      position="end"
+      opened
+      mode="side"
+    >
+      <h1>rechts</h1>
+    </mat-drawer>
+  </mat-drawer-container>
+  <div class="example-sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+  </div>
+  <div class="example-sidenav-content">
     <button type="button" mat-button (click)="drawer2.toggle()">
       Toggle sidenav
     </button>
   </div>
-  </mat-drawer-container>
 </section>
