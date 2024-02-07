@@ -1,0 +1,34 @@
+<div class="channelRoom">
+  <header>
+    <h1># {{ channelName }}</h1>
+    <div>
+        <div>Avatare Users</div>
+        <div>Anzahl Users</div>
+    </div>
+    <button (click)="addUser()"><mat-icon>add_user</mat-icon></button>
+  </header>
+  <div class="channelChat" *ngFor="let message of messages">
+    <div>
+      <span>{{ message }}</span>
+    </div>
+    <div>
+      <span
+        >{{ timestamps["0"] | date : "' HH:mm " }}Uhr</span
+      >
+    </div>
+    <div>
+        <a (click)="openThread()">antworten</a>
+      </div>
+    <div>
+        <div class="chatLine"></div>
+        <div><span
+            >{{ timestamps["0"] | date : "dd.MM.yyyy'" }}</span
+          ></div>
+        <div class="chatLine"></div>
+    </div>
+  </div>
+  <footer>
+    <input id="channelInput" type="text" />
+    <button (click)="sendMessage()">Send</button>
+  </footer>
+</div>

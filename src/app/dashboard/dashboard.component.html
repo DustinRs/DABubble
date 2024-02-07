@@ -4,12 +4,19 @@
       <img src="assets/imgs/logo.png" alt="" />
       <h1>DABubble</h1>
     </div>
-    <input type="search" />
+    <div class="inputDiv">
+      <input matInput placeholder="Code learning durchsuchen" />
+      <mat-icon matSuffix>search</mat-icon>
+    </div>
+
     <div class="profileDiv" [matMenuTriggerFor]="beforeMenu">
       <h1 *ngIf="!googleAcc">{{ userInfo.Name }}</h1>
       <h1 *ngIf="googleAcc">{{ userInfo.name }}</h1>
-      <img *ngIf="!googleAcc" src="{{ userInfo.avatar }}" alt="" />
-      <img *ngIf="googleAcc" src="{{ userInfo.picture }}" alt="" />
+      <div>
+        <img *ngIf="!googleAcc" src="{{ userInfo.avatar }}" alt="" />
+        <img *ngIf="googleAcc" src="{{ userInfo.picture }}" alt="" />
+        <div class="onlineUser"></div>
+      </div>
       <mat-icon>expand_more</mat-icon>
     </div>
     <mat-menu #beforeMenu="matMenu" xPosition="before">
@@ -18,12 +25,86 @@
     </mat-menu>
   </header>
   <mat-drawer-container class="content-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" opened mode="side">
-      <h1>links</h1>
+    <mat-drawer #drawer opened mode="side">
+      <div class="leftTop">
+        <img src="assets/imgs/Workspace logo.png" alt="" />
+        <h2>Code learning</h2>
+        <button mat-button><mat-icon>edit_square</mat-icon></button>
+      </div>
+      <div>
+        <div class="d-flex">
+          <button id="channelsButton" class="turn" (click)="showList('channels')">></button>
+          <h3>Channels</h3>
+          <button (click)="openDialog()">+</button>
+        </div>
+        <div class="" id="channels">
+          <mat-nav-list>
+          <a
+            mat-list-item
+            *ngFor="let channel of channels"
+            routerLink="{{ channel.link }}/{{channel.id}}"
+            ># {{ channel.name }}</a
+          >
+        </mat-nav-list>
+        </div>
+        
+      </div>
+      <div class="d-flex">
+        <button (click)="openDialog()">+</button>
+        <h3>Channel hinzufügen</h3>
+      </div>
+      <div>
+        <div class="d-flex">
+          <button id="friendsButton" class="turn" (click)="showList('friends')">></button>
+          <mat-icon>person</mat-icon>
+          <h3>Direktnachrichten</h3>
+        </div>
+        <div class="" id= "friends">
+          <mat-list *ngIf="!googleAcc">
+          <mat-list-item *ngFor="let friend of friends">
+            <img matListItemAvatar src="{{ friend.avatar }}" />
+            <div class="{{ friend.online }}"></div>
+            <h3 matListItemTitle>
+              {{ friend.Name }}
+              <span *ngIf="friend.Name == userInfo.Name">(Du)</span>
+            </h3>
+            <p matListItemLine>
+              <span>{{ friend.Job }}</span>
+            </p>
+          </mat-list-item>
+        </mat-list>
+        <mat-list *ngIf="googleAcc">
+          <mat-list-item>
+            <img matListItemAvatar src="{{ userInfo.picture }}" />
+            <div class="online"></div>
+            <h3 matListItemTitle>{{ userInfo.name }} <span>(Du)</span></h3>
+            <p matListItemLine>
+              <span>Student</span>
+            </p>
+          </mat-list-item>
+          <mat-list-item *ngFor="let friend of friends">
+            <img matListItemAvatar src="{{ friend.avatar }}" />
+            <div class="{{ friend.online }}"></div>
+            <h3 matListItemTitle>{{ friend.Name }}
+              <span *ngIf="friend.Name == userInfo.Name">(Du)</span>
+            </h3>
+            <p matListItemLine>
+              <span>{{ friend.Job }}</span>
+            </p>
+          </mat-list-item>
+        </mat-list>
+        </div>
+        
+      </div>
     </mat-drawer>
     <mat-drawer-content>
       <div>
-        <h1>hallo</h1>
+        <router-outlet></router-outlet>
+        <div class="toggleButton2">
+          <button type="button" (click)="drawer2.toggle()">
+            <a>antworten</a>
+          </button>
+        </div>
       </div>
     </mat-drawer-content>
 
@@ -34,17 +115,18 @@
       opened
       mode="side"
     >
+      <div class="toggleButton2">
+        <button type="button" mat-button (click)="drawer2.toggle()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
       <h1>rechts</h1>
     </mat-drawer>
   </mat-drawer-container>
-  <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
-  </div>
-  <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="drawer2.toggle()">
-      Toggle sidenav
-    </button>
+  <div class="toggleButton1" (click)="drawer.toggle()">
+    <div class="workspaceButton" type="button">
+      <span>Workspace-Menü schließen</span>
+      <img src="assets/imgs/Show menu.png" alt="" />
+    </div>
   </div>
 </section>
