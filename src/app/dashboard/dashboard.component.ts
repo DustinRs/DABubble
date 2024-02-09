@@ -12,7 +12,9 @@ import {
   Firestore,
   collection,
   collectionData,
+  doc,
   getDocs,
+  updateDoc,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';

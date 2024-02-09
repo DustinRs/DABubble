@@ -6,6 +6,8 @@ export class Channel {
     messages: [];
     timestamps: [];
     users: [];
+    avatars: [];
+    people: [];
     
   
     constructor(obj?: any) {
@@ -16,6 +18,8 @@ export class Channel {
       this.messages = obj ? obj.messages : '';
       this.timestamps = obj ? obj.timestamp : '';
       this.users = obj ? obj.users : '';
+      this.avatars = obj ? obj.avatars : '';
+      this.people = obj ? obj.people : '';
     }
   
     asJson() {
@@ -27,6 +31,8 @@ export class Channel {
         messages: [],
         timestamps: [],
         users: [],
+        avatars: [],
+        people: [],
       };
     }
   }

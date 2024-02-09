@@ -9,10 +9,51 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
+        >h1 {
+            margin: 16px;
+        }
+        >button{
+            margin: 16px;
+        }
     }
 }
 
 .channelChat {
     display: flex;
-    
+    flex-direction: column;
+    width: 100%;
+}
+
+.chatLine {
+    width: 33%;
+    height: 1px;
+    background-color:#ADB0D9;
+}
+
+.dateDiv {
+    display: none;
+    align-items: center;
+}
+
+.dateDiv {
+    display: flex;
+    align-items: center;
+}
+
+.date {
+    display: flex;
+    justify-content: center;
+    width: 33%;
+    border: 1px solid #ADB0D9;
+    padding: 0px 8px 0px 8px;
+    border-radius: 32px;
+}
+
+.messageDiv {
+    display: flex;
+}
+
+img {
+    width: 64px;
+    border-radius: 100%;
 }
