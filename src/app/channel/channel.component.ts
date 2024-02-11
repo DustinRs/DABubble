@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ChannelDialogComponent } from '../channel-dialog/channel-dialog.component';
 
 
 @Component({
@@ -99,7 +100,9 @@ export class ChannelComponent {
   }
 
   openAddUser() {
-    
+    const dialog = this.dialog.open(ChannelDialogComponent);
+    dialog.componentInstance.channelId = this.channelId;
+    dialog.componentInstance.peoples2 = this.peoples;
   }
 
   openThread(id: any) {}

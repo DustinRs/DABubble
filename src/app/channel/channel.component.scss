@@ -1,59 +1,200 @@
 .channelRoom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  > header {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
-    >header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        >h1 {
-            margin: 16px;
-        }
-        >button{
-            margin: 16px;
-        }
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.2);
+    padding-bottom: 16px;
+    border-radius: 32px 32px 0px 0px;
+    > h1 {
+      margin-top: 16px;
+      margin-left: 32px;
     }
+    > button {
+      margin: 16px;
+    }
+  }
+}
+
+.avatarDiv {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  > div {
+    > img {
+      margin-left: -32px;
+      width: 36px;
+      border: 2px solid white;
+    }
+  }
 }
 
 .channelChat {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  gap: 32px;
+  width: 100%;
+  margin-bottom: 32px;
 }
 
 .chatLine {
-    width: 33%;
-    height: 1px;
-    background-color:#ADB0D9;
+  width: 33%;
+  height: 1px;
+  background-color: #adb0d9;
 }
 
 .dateDiv {
-    display: none;
-    align-items: center;
-}
-
-.dateDiv {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
 .date {
-    display: flex;
-    justify-content: center;
-    width: 33%;
-    border: 1px solid #ADB0D9;
-    padding: 0px 8px 0px 8px;
-    border-radius: 32px;
+  display: flex;
+  justify-content: center;
+  width: 33%;
+  border: 1px solid #adb0d9;
+  padding: 0px 8px 0px 8px;
+  border-radius: 32px;
 }
 
 .messageDiv {
-    display: flex;
+  display: flex;
+  justify-content: flex-end;
+  align-items: start;
+  gap: 16px;
+  width: 100%;
+}
+.messageTop {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.messageDivOthers {
+  display: flex;
+  justify-content: flex-start;
+  align-items: start;
+  gap: 16px;
+  width: 100%;
+}
+
+.message {
+  background-color: #797ef3;
+  padding: 16px;
+  border-radius: 16px 0px 16px 16px;
+}
+
+.messageOthers {
+  background-color: #eceefe;
+  padding: 16px;
+  border-radius: 0px 16px 16px 16px;
+}
+
+.messageInfos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  > div {
+    > a {
+      color: #535af1;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+.iconDiv {
+  display: flex;
+  justify-content: flex-end;
 }
 
 img {
-    width: 64px;
-    border-radius: 100%;
+  width: 64px;
+  border-radius: 100%;
+}
+
+.mgl {
+  margin-left: 16px;
+}
+
+.mgr {
+  margin-right: 16px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-left: 32px;
+  margin-right: 32px;
+  > div {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+    > textarea {
+        padding: 16px;
+      width: 100%;
+      height: 120px;
+      border: 1px solid #ADB0D9;
+      border-radius: 16px;
+      resize: none;
+      cursor: pointer;
+      &:focus{
+        outline: none;
+      }
+    }
+    >div{
+        position: absolute;
+        left: 32px;
+        right: 32px;
+        bottom: 32px;
+        display: flex;
+        justify-content: space-between;
+        >button{
+            display: flex;
+            align-items: center;
+            border: unset;
+            background-color: transparent;
+            >mat-icon{
+                color: #444DF2;
+                cursor: pointer;
+            }
+        }
+        >div{
+            display: flex;
+            align-items: center;
+            gap: 0px;
+            >button{
+                border: unset;
+                background-color: transparent;
+                >mat-icon{
+                    cursor: pointer;
+                    padding: 4px;
+                    &:hover{
+                        background-color: #eceefe;
+                        border-radius: 100%;
+                    }
+                }
+            }
+            >span {
+                background-color: black;
+                width: 2px;
+                height: 50%;
+            }
+        }
+    }
+  }
 }

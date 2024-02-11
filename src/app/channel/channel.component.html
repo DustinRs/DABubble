@@ -1,14 +1,15 @@
 <div class="channelRoom">
   <header>
     <h1># {{ channelName }}</h1>
-    <div >
-      <div *ngFor="let people of peoples;">
+    <div class="avatarDiv">
+      <div *ngFor="let people of peoples">
         <img src="{{ people.avatar }}" alt="" />
       </div>
-      <span>{{ peoples.length }}</span>
+      
+        <span>{{ peoples.length }}</span>
+        <button (click)="openAddUser()"><mat-icon>person_add</mat-icon></button>
+      
     </div>
-    <button (click)="openAddUser()"><mat-icon>add_user</mat-icon></button>
-    
   </header>
   <div class="channelChat" *ngFor="let message of messages; index as i">
     <div class="dateDiv">
@@ -18,31 +19,59 @@
       </div>
       <div class="chatLine"></div>
     </div>
-    <div class="messageDiv">
-      <div *ngIf="this.userInfo.Name !== users[i]">
-        <img src="{{ avatars[i] }}" alt="" />
-      </div>
-      <div>
-        <div>
-          <span>{{ timestamps[i] | date : "' HH:mm " }}Uhr</span>
-          <span>{{ users[i] }}</span>
+    <div *ngIf="this.userInfo.Name == users[i]" class="messageDiv">
+      <div class="messageInfos">
+        <div class="messageTop">
+          <span> {{ timestamps[i] | date : "' HH:mm " }}Uhr</span>
+          <span>
+            <b>{{ users[i] }}</b></span
+          >
         </div>
-        <div>
+
+        <div class="message">
           <span>{{ message }}</span>
         </div>
-        <div>icons</div>
+        <div class="iconDiv">icons</div>
       </div>
-      <div *ngIf="this.userInfo.Name == users[i]">
-        <img src="{{ this.userInfo.avatar }}" alt="" />
+      <div>
+        <img class="mgr" src="{{ this.userInfo.avatar }}" alt="" />
       </div>
     </div>
 
-    <div>
-      <a (click)="openThread(i)">antworten</a>
+    <div *ngIf="this.userInfo.Name !== users[i]" class="messageDivOthers">
+      <div>
+        <img class="mgl" src="{{ avatars[i] }}" alt="" />
+      </div>
+      <div class="messageInfos">
+        <div>
+          <span
+            ><b>{{ users[i] }}</b></span
+          >
+          <span>{{ timestamps[i] | date : "' HH:mm " }}Uhr</span>
+        </div>
+        <div class="messageOthers">
+          <span>{{ message }}</span>
+        </div>
+        <div>
+          <a (click)="openThread(i)">antworten</a>
+          <span>Letzte Antwort</span>
+        </div>
+      </div>
     </div>
   </div>
   <footer>
-    <input id="channelInput" type="text" />
-    <button (click)="sendMessage()">Send</button>
+    <div>
+      <textarea id="channelInput" type="text" placeholder="Nachricht an # {{channelName}}"></textarea> 
+      <div>
+        <div>
+          <button><mat-icon>add</mat-icon></button>
+          <span></span>
+          <button><mat-icon>mood</mat-icon></button>
+          <button><mat-icon>alternate_email</mat-icon></button>
+        </div>
+        <button ><mat-icon (click)="sendMessage()">send</mat-icon></button>
+      </div>
+    </div>
+    
   </footer>
 </div>
