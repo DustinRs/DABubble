@@ -19,10 +19,10 @@
 
     <div class="inputDiv">
       <input
+        #emailInput
         [formControl]="emailFormControl"
         placeholder="beispielname@email.de"
         [(ngModel)]="userLogin.email"
-        ngModel
         [email]="false"
       />
       <mat-icon matSuffix>mail</mat-icon>
@@ -67,9 +67,7 @@
       ODER
       <div class="line"></div>
     </div>
-    <a id="googleLink" class="googleLink" href=""
-      ><img src="assets/imgs/Google.png" alt="" /> Anmelden mit Google</a
-    >
+    <a id="googleLink" class="googleLink" href=""></a>
     <div class="buttonDiv">
       <button (click)="login()" mat-raised-button color="primary">
         Anmelden

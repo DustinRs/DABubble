@@ -1,5 +1,5 @@
 declare let google:any;
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, HostListener  } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -48,7 +48,8 @@ export class LoginComponent implements OnInit {
 avatar: 'assets/imgs/00c.Charaters (8).png',
 online: 'online',
 Job: 'Student',
-email: 'guest@guest.com'}]
+email: 'guest@guest.com',
+password: 'Beispiel1!'}]
 
   constructor(private router: Router) {
     const aCollection = collection(this.firestore, 'RegisteredUsers');
@@ -112,9 +113,18 @@ email: 'guest@guest.com'}]
     if (response) {
       const payload = this.decodeToken(response.credential);
       sessionStorage.setItem('loggedInUser', JSON.stringify(payload));
-      this.router.navigateByUrl('/dashboard');
     }
-  }
+      this.router.navigateByUrl('/dashboard');
+      this.executeGlobalClick();
+    }
+
+    executeGlobalClick() {
+      const htmlElement = document.documentElement;
+      if (htmlElement) {
+        htmlElement.click();
+      } 
+    }
+    
 
   decodeToken(token: string) {
 return JSON.parse(atob(token.split('.')[1]))

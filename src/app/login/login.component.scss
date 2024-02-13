@@ -145,24 +145,24 @@ a {
   color: #797EF3;
 }
 
-.googleLink {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
- color: #444DF2;
- padding-top: 12px;
- padding-bottom: 12px;
-  width: 100%;
-  border-radius: 32px;
-  background-color: #ECEEFE;
-  &:hover {
-    outline: 1px solid darkgrey;
-  }
-  >img {
-    width: 32px;
-  }
-}
+// .googleLink {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 16px;
+//  color: #444DF2;
+//  padding-top: 12px;
+//  padding-bottom: 12px;
+//   width: 100%;
+//   border-radius: 32px;
+//   background-color: #ECEEFE;
+//   &:hover {
+//     outline: 1px solid darkgrey;
+//   }
+//   >img {
+//     width: 32px;
+//   }
+// }
 
 mat-error{
   color: red;
@@ -172,3 +172,6 @@ mat-error{
 .green {
   color: green;
 }
+
+
+
