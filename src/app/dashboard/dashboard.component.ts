@@ -12,9 +12,7 @@ import {
   Firestore,
   collection,
   collectionData,
-  doc,
   getDocs,
-  updateDoc,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
@@ -23,6 +21,8 @@ import { CreateChannelComponent } from '../create-channel/create-channel.compone
 @Component({
   selector: 'app-dashboard',
   standalone: true,
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss',
   imports: [
     MatSidenavModule,
     MatCardModule,
@@ -31,10 +31,8 @@ import { CreateChannelComponent } from '../create-channel/create-channel.compone
     MatMenuModule,
     CommonModule,
     MatListModule,
-    RouterModule
+    RouterModule,
   ],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent implements OnInit {
   firestore: Firestore = inject(Firestore);
@@ -82,7 +80,7 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
-  channels:any;
+  channels: any;
 
   constructor(private router: Router, public dialog: MatDialog) {
     const aCollection = collection(this.firestore, 'Channels');

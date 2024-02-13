@@ -97,31 +97,13 @@
         
       </div>
     </mat-drawer>
-    <mat-drawer-content>
+    <mat-drawer-content class="overflow">
       <div>
         <router-outlet></router-outlet>
-        <!-- <div class="toggleButton2">
-          <button type="button" (click)="drawer2.toggle()">
-            <a>antworten</a>
-          </button>
-        </div> -->
       </div>
     </mat-drawer-content>
 
-    <mat-drawer
-      #drawer2
-      class="example-sidenav"
-      position="end"
-      opened
-      mode="side"
-    >
-      <div class="toggleButton2">
-        <button type="button" mat-button (click)="drawer2.toggle()">
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
-      <h1>rechts</h1>
-    </mat-drawer>
+    
   </mat-drawer-container>
   <div class="toggleButton1" (click)="drawer.toggle()">
     <div class="workspaceButton" type="button">

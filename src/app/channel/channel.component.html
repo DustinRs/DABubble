@@ -1,14 +1,15 @@
-<div class="channelRoom">
+<div id="channelRoom" class="channelRoom">
   <header>
-    <h1># {{ channelName }}</h1>
+    <h1 (click)="openChannelInfo()"># {{ channelName }}</h1>
     <div class="avatarDiv">
-      <div *ngFor="let people of peoples">
-        <img src="{{ people.avatar }}" alt="" />
-      </div>
-      
+      <div (click)="showPeople()">
+        <div *ngFor="let people of peoples">
+          <img src="{{ people.avatar }}" alt="" />
+        </div>
+
         <span>{{ peoples.length }}</span>
-        <button (click)="openAddUser()"><mat-icon>person_add</mat-icon></button>
-      
+      </div>
+      <button (click)="openAddUser()"><mat-icon>person_add</mat-icon></button>
     </div>
   </header>
   <div class="channelChat" *ngFor="let message of messages; index as i">
@@ -31,7 +32,18 @@
         <div class="message">
           <span>{{ message }}</span>
         </div>
-        <div class="iconDiv">icons</div>
+        <div class="iconDiv">
+          <emoji-mart
+            id="reactions"
+            class="d-none"
+            (emojiClick)="addReaction($event)"
+            [style]="{ position: 'absolute', bottom: '40px', left: '16px' }"
+            title="Pick your emoji…"
+            emoji="point_up"
+          ></emoji-mart>
+          <div *ngFor="let icon of icons">{{ icon }}</div>
+          <mat-icon (click)="reaction()">add_reaction</mat-icon>
+        </div>
       </div>
       <div>
         <img class="mgr" src="{{ this.userInfo.avatar }}" alt="" />
@@ -53,25 +65,145 @@
           <span>{{ message }}</span>
         </div>
         <div>
-          <a (click)="openThread(i)">antworten</a>
-          <span>Letzte Antwort</span>
+          <a
+            (click)="drawer2.toggle(); setWidth(); answerClicked(); getThread()"
+            >{{ threadChat.length }} Antworten</a
+          >
+          <span> Letzte Antwort {{ lastAnswer }}</span>
         </div>
       </div>
     </div>
   </div>
   <footer>
     <div>
-      <textarea id="channelInput" type="text" placeholder="Nachricht an # {{channelName}}"></textarea> 
+      <textarea
+        id="channelInput"
+        type="text"
+        placeholder="Nachricht an # {{ channelName }}"
+      ></textarea>
       <div>
         <div>
           <button><mat-icon>add</mat-icon></button>
           <span></span>
-          <button><mat-icon>mood</mat-icon></button>
+          <emoji-mart
+            id="emoji"
+            class="d-none"
+            (emojiClick)="addEmoji($event)"
+            [style]="{ position: 'absolute', bottom: '40px', left: '16px' }"
+            title="Pick your emoji…"
+            emoji="point_up"
+          ></emoji-mart>
+
+          <button (click)="emojis()"><mat-icon>mood</mat-icon></button>
           <button><mat-icon>alternate_email</mat-icon></button>
         </div>
-        <button ><mat-icon (click)="sendMessage()">send</mat-icon></button>
+        <button><mat-icon (click)="sendMessage()">send</mat-icon></button>
       </div>
     </div>
-    
   </footer>
+</div>
+<div class="mat-drawer-Div">
+  <mat-drawer #drawer2 class="example-sidenav" position="end" mode="push">
+    <div class="threadContent">
+      <div class="toggleButton2">
+        <button
+          type="button"
+          mat-button
+          (click)="drawer2.toggle(); setWidth(); answerClicked()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <div *ngIf="clickedAnswer">
+        <div class="threadTop">
+          <h1>Thread</h1>
+          <h1># {{ channelName }}</h1>
+        </div>
+        <div class="threadChat">
+          <div *ngFor="let thread of threadArray; index as i">
+            <div
+              *ngIf="this.userInfo.Name !== thread.user"
+              class="messageDivOthers"
+            >
+              <div>
+                <img class="mgl" src="{{ thread['avatar'] }}" alt="" />
+              </div>
+              <div class="messageInfos">
+                <div>
+                  <span
+                    ><b>{{ thread.user }}</b></span
+                  >
+                  <span>{{ thread.timestamp | date : "' HH:mm " }}Uhr</span>
+                </div>
+                <div class="messageOthers">
+                  <span>{{ thread.message }}</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="this.userInfo.Name == thread.user" class="messageDiv">
+              <div class="messageInfos">
+                <div>
+                  <span>{{ thread.timestamp | date : "' HH:mm " }}Uhr </span>
+                  <span
+                    ><b>{{ thread.user }}</b></span
+                  >
+                </div>
+                <div class="message">
+                  <span>{{ thread.message }}</span>
+                </div>
+                <div class="iconDiv">
+                  <emoji-mart
+                    id="reactionsThread"
+                    class="d-none"
+                    (emojiClick)="addReactionThread($event)"
+                    [style]="{ position: 'absolute', bottom: '40px', left: '16px' }"
+                    title="Pick your emoji…"
+                    emoji="point_up"
+                  ></emoji-mart>
+                  <div *ngFor="let icon of icons">{{ icon }}</div>
+                  <mat-icon (click)="reactionThread()">add_reaction</mat-icon>
+                </div>
+              </div>
+              <div>
+                <img class="mgr" src="{{ thread['avatar'] }}" alt="" />
+              </div>
+            </div>
+            <div *ngIf="i == 0">
+              <span>{{ threadChat.length }} Antworten</span>
+              <div>Linie</div>
+            </div>
+          </div>
+        </div>
+        <div class="input thread">
+          <div>
+            <textarea
+              id="threadInput"
+              type="text"
+              placeholder="Antworten..."
+            ></textarea>
+            <div>
+              <div>
+                <button><mat-icon>add</mat-icon></button>
+                <span></span>
+                <emoji-mart
+            id="emojiThread"
+            class="d-none"
+            (emojiClick)="addEmojiThread($event)"
+            [style]="{ position: 'absolute', bottom: '40px', left: '16px' }"
+            title="Pick your emoji…"
+            emoji="point_up"
+          ></emoji-mart>
+
+          <button (click)="emojisThread()"><mat-icon>mood</mat-icon></button>
+                <button><mat-icon>alternate_email</mat-icon></button>
+              </div>
+              <button>
+                <mat-icon (click)="sendMessageThread()">send</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-drawer>
 </div>

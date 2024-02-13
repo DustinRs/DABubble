@@ -44,6 +44,11 @@ export class LoginComponent implements OnInit {
   emailValid = false;
   emailFormControl: FormControl;
   passwordFormControl: FormControl;
+  arrayGuest = [{Name: 'Guest',
+avatar: 'assets/imgs/00c.Charaters (8).png',
+online: 'online',
+Job: 'Student',
+email: 'guest@guest.com'}]
 
   constructor(private router: Router) {
     const aCollection = collection(this.firestore, 'RegisteredUsers');
@@ -116,7 +121,8 @@ return JSON.parse(atob(token.split('.')[1]))
   }
 
   loginGuest() {
-    this.router.navigateByUrl('dashboard');
+    sessionStorage.setItem('loggedInUser', JSON.stringify(this.arrayGuest));
+    this.router.navigateByUrl('/dashboard');
   }
 
   validatePassword(): ValidatorFn {

@@ -95,7 +95,7 @@ mat-drawer-content {
   padding-left: 16px;
   padding-right: 16px;
   > div {
-    background-color: white;
+    
     height: 100%;
     border-radius: 32px;
   }
@@ -191,6 +191,10 @@ mat-drawer-content {
 .turn {
   transform: rotate(90deg);
 
+}
+
+.overflow {
+  overflow: hidden;
 }
   
 

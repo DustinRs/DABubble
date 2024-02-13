@@ -14,8 +14,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 import {
   MatDialog,
   MatDialogActions,
-  MatDialogClose,
-  MatDialogTitle,
   MatDialogContent,
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';

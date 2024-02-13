@@ -1,0 +1,11 @@
+<div class="dialog">
+    <h1>Mitglieder</h1>
+    <button (click)="close()">X</button>
+<div class="list">
+<div *ngFor="let people of peoples">
+<img src="{{people.avatar}}" alt="">
+<span>{{people.Name}}</span>
+</div>
+</div>
+<button (click)="openAddUser()">add</button>
+</div>

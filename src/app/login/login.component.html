@@ -26,13 +26,11 @@
         [email]="false"
       />
       <mat-icon matSuffix>mail</mat-icon>
-      @if (!emailFormControl.valid &&
-      !emailFormControl.hasError('required')) {
+      @if (!emailFormControl.valid && !emailFormControl.hasError('required')) {
       <mat-error>*Bitte nutze eine gültige E-Mail-Adresse.</mat-error>
       } @if (emailFormControl.hasError('required')) {
       <mat-error>*E-Mail wird benötigt.</mat-error>
-      } @if (emailFormControl.valid &&
-      !emailFormControl.hasError('required')) {
+      } @if (emailFormControl.valid && !emailFormControl.hasError('required')) {
       <mat-error class="green">*E-Mail ist gültig.</mat-error>
       }
     </div>
@@ -51,8 +49,8 @@
           !passwordFormControl.valid &&
           !passwordFormControl.hasError('required')
         "
-        >*Einen Groß- & Kleinbuchstaben / eine Zahl und ein
-        Sonderzeichen. (Beispiel1!)</mat-error
+        >*Einen Groß- & Kleinbuchstaben / eine Zahl und ein Sonderzeichen.
+        (Beispiel1!)</mat-error
       >
       <mat-error
         class="green"
