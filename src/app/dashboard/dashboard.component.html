@@ -45,7 +45,7 @@
           <a
             mat-list-item
             *ngFor="let channel of channels"
-            routerLink="{{ channel.link }}/{{channel.id}}"
+            routerLink="{{ channel.link }}/{{channel.id}}" routerLinkActive="isActive"
             ># {{ channel.name }}</a
           >
         </mat-nav-list>
