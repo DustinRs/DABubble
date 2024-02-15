@@ -17,6 +17,7 @@ import {
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateChannelComponent } from '../create-channel/create-channel.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,6 +33,8 @@ import { CreateChannelComponent } from '../create-channel/create-channel.compone
     CommonModule,
     MatListModule,
     RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class DashboardComponent implements OnInit {
@@ -40,7 +43,7 @@ export class DashboardComponent implements OnInit {
   userInfo: any;
   googleAcc = false;
   toggle = false;
-
+  searchInput: any;
   friends = [
     {
       Name: 'Frederick Beck',
@@ -81,6 +84,10 @@ export class DashboardComponent implements OnInit {
   ];
 
   channels: any;
+  friendsFiltered: any;
+  channelsFiltered: any;
+  messagesFiltered: any;
+  threadsFiltered: any;
 
   constructor(private router: Router, public dialog: MatDialog) {
     const aCollection = collection(this.firestore, 'Channels');
@@ -125,5 +132,39 @@ export class DashboardComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(CreateChannelComponent);
+  }
+
+  async search() {
+    const friendsSnapshot = await getDocs(
+      collection(this.firestore, 'Friends')
+    );
+    const channelsSnapshot = await getDocs(
+      collection(this.firestore, 'Channels')
+    );
+    const threadsSnapshot = await getDocs(
+      collection(this.firestore, 'Threads')
+    );
+    let friendData = friendsSnapshot.docs.map((doc) => doc.data());
+    let channelData = channelsSnapshot.docs.map((doc) => doc.data());
+    let messagesData = channelsSnapshot.docs.map((doc) => doc.data());
+    let threadData = threadsSnapshot.docs.map((doc) => doc.data());
+
+    let friendsFiltered = friendData['0']['friends'].filter(
+      (u: { [x: string]: any }) =>
+        u['Name'].toLowerCase().includes(this.searchInput.toLowerCase())
+    );
+    let channelsFiltered = channelData.filter((u: { [x: string]: any }) =>
+      u['name'].toLowerCase().includes(this.searchInput.toLowerCase())
+    );
+    let messagesFiltered = messagesData.filter((u:any) =>
+      u['messages'].includes(this.searchInput)
+    );
+    this.friendsFiltered = friendsFiltered;
+    this.channelsFiltered = channelsFiltered;
+    this.messagesFiltered = messagesFiltered;
+
+    console.log('messages', messagesFiltered);
+    // console.log('threads', threadData);
+    // console.log('searchInput', this.searchInput);
   }
 }
