@@ -108,7 +108,6 @@
       <div class="toggleButton2">
         <button
           type="button"
-          mat-button
           (click)="drawer2.toggle(); setWidth(); answerClicked()"
         >
           <mat-icon>close</mat-icon>
@@ -128,7 +127,7 @@
               <div>
                 <img class="mgl" src="{{ thread['avatar'] }}" alt="" />
               </div>
-              <div class="messageInfos">
+              <div class="messageInfos mgr mgb">
                 <div>
                   <span
                     ><b>{{ thread.user }}</b></span
@@ -141,7 +140,7 @@
               </div>
             </div>
             <div *ngIf="this.userInfo.Name == thread.user" class="messageDiv">
-              <div class="messageInfos">
+              <div class="messageInfos mgl mgb">
                 <div>
                   <span>{{ thread.timestamp | date : "' HH:mm " }}Uhr </span>
                   <span
@@ -156,7 +155,11 @@
                     id="reactionsThread"
                     class="d-none"
                     (emojiClick)="addReactionThread($event)"
-                    [style]="{ position: 'absolute', bottom: '40px', left: '16px' }"
+                    [style]="{
+                      position: 'absolute',
+                      bottom: '40px',
+                      left: '16px'
+                    }"
                     title="Pick your emoji…"
                     emoji="point_up"
                   ></emoji-mart>
@@ -168,13 +171,13 @@
                 <img class="mgr" src="{{ thread['avatar'] }}" alt="" />
               </div>
             </div>
-            <div *ngIf="i == 0">
+            <div class="lineDiv mgb" *ngIf="i == 0">
               <span>{{ threadChat.length }} Antworten</span>
-              <div>Linie</div>
+              <div class="line"></div>
             </div>
           </div>
         </div>
-        <div class="input thread">
+        <div class="inputThread">
           <div>
             <textarea
               id="threadInput"
@@ -186,15 +189,21 @@
                 <button><mat-icon>add</mat-icon></button>
                 <span></span>
                 <emoji-mart
-            id="emojiThread"
-            class="d-none"
-            (emojiClick)="addEmojiThread($event)"
-            [style]="{ position: 'absolute', bottom: '40px', left: '16px' }"
-            title="Pick your emoji…"
-            emoji="point_up"
-          ></emoji-mart>
+                  id="emojiThread"
+                  class="d-none"
+                  (emojiClick)="addEmojiThread($event)"
+                  [style]="{
+                    position: 'absolute',
+                    bottom: '40px',
+                    left: '16px'
+                  }"
+                  title="Pick your emoji…"
+                  emoji="point_up"
+                ></emoji-mart>
 
-          <button (click)="emojisThread()"><mat-icon>mood</mat-icon></button>
+                <button (click)="emojisThread()">
+                  <mat-icon>mood</mat-icon>
+                </button>
                 <button><mat-icon>alternate_email</mat-icon></button>
               </div>
               <button>

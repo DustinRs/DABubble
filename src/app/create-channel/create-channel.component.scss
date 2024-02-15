@@ -1,8 +1,47 @@
 mat-form-field {
-    width: 500px;
-    
+  width: 500px;
 }
 
-h2,h3 {
-    font-weight: bold;
+h2,
+h3 {
+  font-weight: bold;
+  color: black;
+}
+
+.dialog {
+  position: relative;
+  > h2 {
+    padding: 16px 16px 0px 16px;
+  }
+  > p {
+    padding: 16px 16px 0px 16px;
+  }
+  > button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: unset;
+    background-color: unset;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    &:hover {
+      background-color: #eceefe;
+      border-radius: 100%;
+    }
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid #eceefe;
+  height: 40px;
+  border-radius: 32px;
+  cursor: pointer;
 }

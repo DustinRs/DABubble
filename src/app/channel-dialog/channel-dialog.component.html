@@ -1,6 +1,6 @@
 <div class="dialog">
 
-    <h4>Basic mat-select</h4>
+    <h4>Mitglieder hinzufügen</h4>
     <mat-form-field>
       <mat-select [formControl]="friends" [(ngModel)]="peoples3" multiple>
         <div *ngFor="let friend of friendsList">
@@ -10,5 +10,6 @@
         </div>
       </mat-select>
     </mat-form-field>
-    <button (click)="addPeople()">add</button>
+    <button style="background-color: #444df2;
+    color: white; border: unset; border-radius: 16px; padding: 8px; cursor: pointer;" (click)="addPeople()">Hinzufügen</button>
 </div>

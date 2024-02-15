@@ -33,11 +33,14 @@
       </div>
       <div>
         <div class="d-flex">
-          <button id="channelsButton" class="turn" (click)="showList('channels')">></button>
-          <h3>Channels</h3>
-          <button (click)="openDialog()">+</button>
+          <div>
+            <button id="channelsButton" class="turn" (click)="showList('channels')"><mat-icon>navigate_next</mat-icon></button>
+            <mat-icon>spoke</mat-icon>
+            <h3>Channels</h3>
+          </div>
+          <button (click)="openDialog()"><mat-icon>add_circle</mat-icon></button>
         </div>
-        <div class="" id="channels">
+        <div class="channels" id="channels">
           <mat-nav-list>
           <a
             mat-list-item
@@ -49,17 +52,20 @@
         </div>
         
       </div>
-      <div class="d-flex">
-        <button (click)="openDialog()">+</button>
+      <div class="d-flexChannel">
+        <button (click)="openDialog()"><mat-icon>add_circle</mat-icon></button>
         <h3>Channel hinzufügen</h3>
       </div>
       <div>
         <div class="d-flex">
-          <button id="friendsButton" class="turn" (click)="showList('friends')">></button>
-          <mat-icon>person</mat-icon>
-          <h3>Direktnachrichten</h3>
+          <div>
+            <button id="friendsButton" class="turn" (click)="showList('friends')"><mat-icon>navigate_next</mat-icon></button>
+            <mat-icon>person</mat-icon>
+            <h3>Direktnachrichten</h3>
+
+          </div>
         </div>
-        <div class="" id= "friends">
+        <div class="friends" id= "friends">
           <mat-list *ngIf="!googleAcc">
           <mat-list-item *ngFor="let friend of friends">
             <img matListItemAvatar src="{{ friend.avatar }}" />
