@@ -1,4 +1,4 @@
-<section>
+<section (click)="clearSearch()">
   <header>
     <div class="logo">
       <img src="assets/imgs/logo.png" alt="" />
@@ -6,19 +6,25 @@
     </div>
     <div class="inputDiv">
       <input
+        id="searchInput"
+        (click)="search()"
         [(ngModel)]="searchInput"
         (input)="search()"
         matInput
         placeholder="Code learning durchsuchen"
       />
       <mat-icon matSuffix>search</mat-icon>
-      <div class="searchResultsDiv">
-        <ul>
-          <li *ngFor="let friend of friendsFiltered">{{friend.Name}}</li>
-          <li *ngFor="let channel of channelsFiltered">{{channel.name}}</li>
-          <!-- <li *ngFor="let message of messagesFiltered">{{message.messages}}</li> -->
-          <!-- <li *ngFor="let thread of threadsFiltered">{{thread.message}}</li> -->
-        </ul>
+      <div id="searchResultsDiv" class="searchResultsDiv d-none">
+        <span *ngFor="let friend of friendsFiltered"
+          ><img src="{{ friend.avatar }}" alt="" /> {{ friend.Name }}</span
+        >
+        <span
+          *ngFor="let channel of channelsFiltered"
+          routerLink="{{ channel.link }}/{{ channel.id }}"
+          ># {{ channel.name }}</span
+        >
+        <!-- <span *ngFor="let message of messagesFiltered">{{message.messages}}</span> -->
+        <!-- <span *ngFor="let thread of threadsFiltered">{{thread.message}}</span> -->
       </div>
     </div>
 
@@ -33,7 +39,7 @@
       <mat-icon>expand_more</mat-icon>
     </div>
     <mat-menu #beforeMenu="matMenu" xPosition="before">
-      <button mat-menu-item>Profil</button>
+      <button mat-menu-item (click)="openProfile()">Profil</button>
       <button mat-menu-item (click)="logout()">Log out</button>
     </mat-menu>
   </header>
@@ -42,7 +48,7 @@
       <div class="leftTop">
         <img src="assets/imgs/Workspace logo.png" alt="" />
         <h2>Code learning</h2>
-        <button mat-button><mat-icon>edit_square</mat-icon></button>
+        <!-- <button mat-button><mat-icon>edit_square</mat-icon></button> -->
       </div>
       <div>
         <div class="d-flex">
@@ -93,7 +99,10 @@
         </div>
         <div class="friends" id="friends">
           <mat-list *ngIf="!googleAcc">
-            <mat-list-item *ngFor="let friend of friends">
+            <mat-list-item
+              *ngFor="let friend of friends"
+              routerLink="chat/{{ friend.Name }}" routerLinkActive="isActive"
+            >
               <img matListItemAvatar src="{{ friend.avatar }}" />
               <div class="{{ friend.online }}"></div>
               <h3 matListItemTitle>
@@ -106,7 +115,7 @@
             </mat-list-item>
           </mat-list>
           <mat-list *ngIf="googleAcc">
-            <mat-list-item>
+            <mat-list-item routerLink="chat/{{ userInfo.name }}" routerLinkActive="isActive">
               <img matListItemAvatar src="{{ userInfo.picture }}" />
               <div class="online"></div>
               <h3 matListItemTitle>{{ userInfo.name }} <span>(Du)</span></h3>
@@ -114,7 +123,10 @@
                 <span>Student</span>
               </p>
             </mat-list-item>
-            <mat-list-item *ngFor="let friend of friends">
+            <mat-list-item
+              *ngFor="let friend of friends"
+              routerLink="chat/{{ friend.Name }}" routerLinkActive="isActive"
+            >
               <img matListItemAvatar src="{{ friend.avatar }}" />
               <div class="{{ friend.online }}"></div>
               <h3 matListItemTitle>

@@ -1,5 +1,5 @@
-declare let google:any;
-import { Component, OnInit, inject, HostListener  } from '@angular/core';
+declare let google: any;
+import { Component, OnInit, inject, HostListener } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -30,7 +30,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -44,12 +44,16 @@ export class LoginComponent implements OnInit {
   emailValid = false;
   emailFormControl: FormControl;
   passwordFormControl: FormControl;
-  arrayGuest = [{Name: 'Guest',
-avatar: 'assets/imgs/00c.Charaters (8).png',
-online: 'online',
-Job: 'Student',
-email: 'guest@guest.com',
-password: 'Beispiel1!'}]
+  arrayGuest = [
+    {
+      Name: 'Guest',
+      avatar: 'assets/imgs/00c.Charaters (8).png',
+      online: 'online',
+      Job: 'Student',
+      email: 'guest@guest.com',
+      password: 'Beispiel1!',
+    },
+  ];
 
   constructor(private router: Router) {
     const aCollection = collection(this.firestore, 'RegisteredUsers');
@@ -65,11 +69,14 @@ password: 'Beispiel1!'}]
     ]);
   }
   ngOnInit(): void {
+    google.accounts.id.disableAutoSelect();
+    sessionStorage.removeItem('loggedInUser');
     google.accounts.id.initialize({
-      client_id: '79801300719-aop00ktvec4ap6cf4r4p15khg5ucmb4g.apps.googleusercontent.com',
-      callback: (resp:any) => this.handleLogin(resp)
+      client_id:
+        '79801300719-aop00ktvec4ap6cf4r4p15khg5ucmb4g.apps.googleusercontent.com',
+      callback: (resp: any) => this.handleLogin(resp),
     });
-    google.accounts.id.renderButton(document.getElementById('googleLink'), {})
+    google.accounts.id.renderButton(document.getElementById('googleLink'), {});
   }
 
   async login() {
@@ -82,12 +89,12 @@ password: 'Beispiel1!'}]
       (u) => u['password'] === this.userLogin.password
     );
     let arrayFiltered = user.filter(
-      item => item['email'] === this.userLogin.email
-      );
-      
+      (item) => item['email'] === this.userLogin.email
+    );
+
     let password: any = passwordFilterd[0];
     let mail: any = mailFiltered[0];
-    
+
     if (
       mail == undefined ||
       password == undefined ||
@@ -109,25 +116,24 @@ password: 'Beispiel1!'}]
     }
   }
 
-  handleLogin(response:any) {
+  handleLogin(response: any) {
     if (response) {
       const payload = this.decodeToken(response.credential);
       sessionStorage.setItem('loggedInUser', JSON.stringify(payload));
     }
-      this.router.navigateByUrl('/dashboard');
-      this.executeGlobalClick();
-    }
+    this.router.navigateByUrl('/dashboard');
+    this.executeGlobalClick();
+  }
 
-    executeGlobalClick() {
-      const htmlElement = document.documentElement;
-      if (htmlElement) {
-        htmlElement.click();
-      } 
+  executeGlobalClick() {
+    const htmlElement = document.documentElement;
+    if (htmlElement) {
+      htmlElement.click();
     }
-    
+  }
 
   decodeToken(token: string) {
-return JSON.parse(atob(token.split('.')[1]))
+    return JSON.parse(atob(token.split('.')[1]));
   }
 
   loginGuest() {

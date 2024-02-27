@@ -11,6 +11,7 @@ import {
   collection,
   collectionData,
   getDocs,
+  setDoc,
 } from '@angular/fire/firestore';
 import { User } from '../../models/user.class';
 import { doc, updateDoc } from 'firebase/firestore';
@@ -59,6 +60,18 @@ export class PickAvatarComponent {
     let user = querySnapshot.docs.map((doc) => doc.data());
     let userFiltered = user.filter((u) => u['avatar'] === '');
     let userId = userFiltered['0']['id'];
+    let userName = userFiltered['0']['Name'];
+    await setDoc(doc(this.firestore, 'Chatrooms', userName), {
+      avatars: [],
+      messages: [],
+      users: [],
+      timestamps: [],
+      id: userName,
+      link: 'chat',
+      avatar: this.imgPath,
+      online: 'online'
+    });
+
     const editedUser = doc(
       collection(this.firestore, 'RegisteredUsers'),
       userId

@@ -1,0 +1,113 @@
+<div id="channelRoom" class="channelRoom">
+  <header>
+    <div *ngIf="chatName === this.userInfo.Name" (click)="openProfile()">
+      <img src="{{ chatAvatar }}" alt="" />
+      <h1>{{ chatName }}</h1>
+      <div class="{{ chatOnline }}"></div>
+    </div>
+    <div *ngIf="chatName !== this.userInfo.Name" (click)="openProfileFriend()">
+      <img src="{{ chatAvatar }}" alt="" />
+      <h1>{{ chatName }}</h1>
+      <div class="{{ chatOnline }}"></div>
+    </div>
+  </header>
+  <div class="channelChat" *ngFor="let message of messages; index as i">
+    <div class="dateDiv">
+      <div class="chatLine"></div>
+      <div class="date">
+        <span>{{ timestamps[i] | date : "EE, dd.MM.yyyy" : "de-DE" }}</span>
+      </div>
+      <div class="chatLine"></div>
+    </div>
+    <div *ngIf="this.userInfo.Name === users[i]" class="messageDiv">
+      <div class="messageInfos">
+        <div class="messageTop">
+          <span> {{ timestamps[i] | date : "' HH:mm " }}Uhr</span>
+          <span>
+            <b>{{ users[i] }}</b></span
+          >
+        </div>
+
+        <div class="message">
+          <span>{{ message }}</span>
+        </div>
+        <div class="iconDiv">
+          <emoji-mart
+            id="reactions"
+            class="d-none"
+            (emojiClick)="addReaction($event)"
+            [style]="{ position: 'absolute', bottom: '40px', left: '16px' }"
+            title="Pick your emoji…"
+            emoji="point_up"
+          ></emoji-mart>
+          <div *ngFor="let icon of icons">{{ icon }}</div>
+          <mat-icon (click)="reaction()">add_reaction</mat-icon>
+        </div>
+      </div>
+      <div>
+        <img class="mgr" src="{{ this.userInfo.avatar }}" alt="" />
+      </div>
+    </div>
+
+    <div *ngIf="this.userInfo.Name !== users[i]" class="messageDivOthers">
+      <div>
+        <img class="mgl" src="{{ avatars[i] }}" alt="" />
+      </div>
+      <div class="messageInfos">
+        <div>
+          <span
+            ><b>{{ users[i] }}</b></span
+          >
+          <span>{{ timestamps[i] | date : "' HH:mm " }}Uhr</span>
+        </div>
+        <div class="messageOthers">
+          <span>{{ message }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="messages.length == 0" class="chatMessageDiv">
+    <div>
+      <img src="{{ chatAvatar }}" alt="" />
+      <span>{{ chatName }}</span>
+    </div>
+    <span
+      >Diese Unterhaltung findet nur zwischen
+      <span *ngIf="chatName === this.userInfo.Name" (click)="openProfile()"
+        ><mat-icon>alternate_email</mat-icon>{{ chatName }}</span
+      ><span
+        *ngIf="chatName !== this.userInfo.Name"
+        (click)="openProfileFriend()"
+        ><mat-icon>alternate_email</mat-icon>{{ chatName }}</span
+      >
+      und dir statt.</span
+    >
+  </div>
+  <footer>
+    <div>
+      <textarea
+        id="chatInput"
+        type="text"
+        placeholder="Nachricht an {{ chatName }}"
+      ></textarea>
+      <div>
+        <div>
+          <button><mat-icon>add</mat-icon></button>
+          <span></span>
+          <emoji-mart
+            id="emoji"
+            class="d-none"
+            (emojiClick)="addEmoji($event)"
+            [style]="{ position: 'absolute', bottom: '40px', left: '16px' }"
+            title="Pick your emoji…"
+            emoji="point_up"
+          ></emoji-mart>
+
+          <button (click)="emojis()"><mat-icon>mood</mat-icon></button>
+          <button><mat-icon>alternate_email</mat-icon></button>
+        </div>
+        <button><mat-icon (click)="sendMessage()">send</mat-icon></button>
+      </div>
+    </div>
+  </footer>
+</div>

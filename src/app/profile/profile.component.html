@@ -1,0 +1,22 @@
+<div class="dialog">
+  <div>
+    <h1>Profil</h1>
+    <button (click)="close()">X</button>
+  </div>
+  <img src="{{ avatar }}" alt="" />
+  <div>
+    <h1>{{ name }}</h1>
+    <button>Bearbeiten</button>
+  </div>
+  <div class="onlineDiv">
+    <div class="{{ online }}"></div>
+    <span class="green">Online</span>
+  </div>
+  <div class="mail">
+    <mat-icon>mail</mat-icon>
+    <span>E-Mail Adresse</span>
+  </div>
+  <div>
+    <span>{{ email }}</span>
+  </div>
+</div>

@@ -24,6 +24,8 @@ export class User {
       email: this.email,
       id: this.id,
       avatar: this.avatar,
+      Job: 'Student',
+      online: 'online'
     };
   }
 }

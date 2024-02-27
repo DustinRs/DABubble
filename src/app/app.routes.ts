@@ -7,6 +7,7 @@ import { PickAvatarComponent } from './pick-avatar/pick-avatar.component';
 import { SendEmailComponent } from './send-email/send-email.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ChannelComponent } from './channel/channel.component';
+import { ChatroomComponent } from './chatroom/chatroom.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -22,7 +23,10 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        children: [{ path: 'channel/:id', component: ChannelComponent }],
+        children: [
+          { path: 'channel/:id', component: ChannelComponent },
+          { path: 'chat/:id', component: ChatroomComponent },
+        ],
       },
     ],
   },

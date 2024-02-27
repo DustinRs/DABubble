@@ -1,0 +1,48 @@
+.dialog {
+    display: flex;
+    width: 320px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    >div {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.onlineDiv {
+    display: flex;
+    justify-content: flex-start !important;
+    gap: 36px;
+}
+
+img {
+    width: 160px;
+    border-radius: 100%;
+}
+h1,h2 {
+    margin: 0;
+}
+
+.mail {
+    display: flex;
+    justify-content: flex-start !important;
+    gap: 32px;
+}
+
+.green {
+    color: green;
+}
+
+
+.online {
+    margin-left: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    background-color: green;
+    border: 2px solid white;
+  }

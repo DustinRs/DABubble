@@ -18,6 +18,7 @@ import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateChannelComponent } from '../create-channel/create-channel.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -88,6 +89,7 @@ export class DashboardComponent implements OnInit {
   channelsFiltered: any;
   messagesFiltered: any;
   threadsFiltered: any;
+  chatrooms: any;
 
   constructor(private router: Router, public dialog: MatDialog) {
     const aCollection = collection(this.firestore, 'Channels');
@@ -106,7 +108,10 @@ export class DashboardComponent implements OnInit {
     const querySnapshot = await getDocs(collection(this.firestore, 'Channels'));
     let channels = querySnapshot.docs.map((doc) => doc.data());
     this.channels = channels;
-    console.log(this.channels);
+    const chatroomsSnapshot = await getDocs(collection(this.firestore, 'Chatrooms'));
+    let chatrooms = chatroomsSnapshot.docs.map((doc) => doc.data());
+    this.chatrooms = chatrooms;
+    console.log(this.chatrooms);
   }
 
   logout() {
@@ -134,7 +139,14 @@ export class DashboardComponent implements OnInit {
     this.dialog.open(CreateChannelComponent);
   }
 
+  openProfile() {
+    const dialog = this.dialog.open(ProfileComponent);
+    dialog.componentInstance.userInfo = this.userInfo;
+  }
+
   async search() {
+    let div = document.getElementById('searchResultsDiv');
+    div?.classList.remove('d-none');
     const friendsSnapshot = await getDocs(
       collection(this.firestore, 'Friends')
     );
@@ -156,7 +168,7 @@ export class DashboardComponent implements OnInit {
     let channelsFiltered = channelData.filter((u: { [x: string]: any }) =>
       u['name'].toLowerCase().includes(this.searchInput.toLowerCase())
     );
-    let messagesFiltered = messagesData.filter((u:any) =>
+    let messagesFiltered = messagesData.filter((u: any) =>
       u['messages'].includes(this.searchInput)
     );
     this.friendsFiltered = friendsFiltered;
@@ -166,5 +178,12 @@ export class DashboardComponent implements OnInit {
     console.log('messages', messagesFiltered);
     // console.log('threads', threadData);
     // console.log('searchInput', this.searchInput);
+  }
+
+  clearSearch() {
+    let div = document.getElementById('searchResultsDiv');
+    div?.classList.add('d-none');
+    this.friendsFiltered = [];
+    this.channelsFiltered = [];
   }
 }

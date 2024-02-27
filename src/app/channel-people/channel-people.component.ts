@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { ChannelDialogComponent } from '../channel-dialog/channel-dialog.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { ProfilefriendComponent } from '../profilefriend/profilefriend.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: 'app-channel-people',
@@ -29,5 +31,18 @@ export class ChannelPeopleComponent {
 
   close() {
     this.dialogRef.close();
+  }
+
+  openFriendProfile(name: any) {
+    const dialog = this.dialog.open(ProfilefriendComponent);
+    dialog.componentInstance.friendId = name;
+    console.log(this.peoples)
+  }
+
+  openProfile(name: any) {
+    const dialog = this.dialog.open(ProfileComponent);
+    let info = JSON.parse(sessionStorage['loggedInUser'])
+    dialog.componentInstance.userInfo = info[0];
+    console.log(JSON.parse(sessionStorage['loggedInUser']))
   }
 }

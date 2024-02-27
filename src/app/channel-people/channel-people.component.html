@@ -4,7 +4,7 @@
     <mat-icon>close</mat-icon>
   </button>
   <div class="list">
-    <div *ngFor="let people of peoples">
+    <div *ngFor="let people of peoples" (click)="openFriendProfile(people.Name)">
       <img src="{{ people.avatar }}" alt="" />
       <span>{{ people.Name }}</span>
     </div>
