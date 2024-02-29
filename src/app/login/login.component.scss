@@ -68,19 +68,19 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+  animation: backgroundLogin 6s ease 2s ;
   > img {
     position: relative;
       width: 640px;
-      animation: startScreen 1s ease 1s 1 forwards;
+      animation: startScreen 4s linear;
   }
 }
 
 @keyframes startScreen {
   0% {
     top: 0;
-    left: 0;
     right: 0;
+    left: 0;
     bottom: 0;
   }
 
@@ -88,6 +88,17 @@ section {
     top: -360px;
     right: 360px;
     opacity: 0;
+  }
+}
+@keyframes backgroundLogin {
+  0% {
+    opacity: 1;
+    display: flex;
+  }
+
+  100% {
+    opacity: 0;
+    display: none;
   }
 }
 

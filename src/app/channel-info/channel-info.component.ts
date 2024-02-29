@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { Firestore, collection, collectionData, doc, updateDoc } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collection,
+  collectionData,
+  doc,
+  updateDoc,
+} from '@angular/fire/firestore';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -8,14 +14,19 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-channel-info',
   standalone: true,
-  imports: [MatFormFieldModule,
+  imports: [
+    MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatButtonModule,CommonModule],
+    MatButtonModule,
+    CommonModule,
+    MatIconModule
+  ],
   templateUrl: './channel-info.component.html',
   styleUrl: './channel-info.component.scss',
 })
@@ -25,6 +36,7 @@ export class ChannelInfoComponent {
   channelId: any;
   channelDescription: any;
   channelName: any;
+  userInfo:any;
 
   constructor(
     private route: Router,
@@ -37,7 +49,6 @@ export class ChannelInfoComponent {
 
   close() {
     this.dialogRef.close();
-    
   }
   async closeAndSave() {
     const editedChannel = doc(
@@ -47,10 +58,13 @@ export class ChannelInfoComponent {
     await updateDoc(editedChannel, {
       name: this.channelName,
       description: this.channelDescription,
-      
     });
 
     this.dialogRef.close();
+    this.route.navigateByUrl('', { skipLocationChange: true }).then(() => {
+      this.route.navigate([`/dashboard`]);
+    });
+
     this.route
       .navigateByUrl('/dashboard', { skipLocationChange: true })
       .then(() => {

@@ -57,6 +57,7 @@ export class ChatroomComponent {
   constructor(private route: ActivatedRoute, public dialog: MatDialog) {
     const aCollection = collection(this.firestore, 'Chatrooms');
     this.items$ = collectionData(aCollection);
+    this.messages = [];
     this.userInfo = JSON.parse(sessionStorage['loggedInUser']);
     if (this.userInfo[0] == undefined) {
       this.googleAcc = true;

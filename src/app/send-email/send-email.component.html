@@ -12,15 +12,18 @@
 
     <p>Bitte geben Sie Ihre E-Mail-Adresse ein.</p>
     <div class="inputDiv">
-      <input [formControl]="emailFormControl" placeholder="beispielname@email.de" [(ngModel)]="this.mailAdress" />
+      <input
+      (input)="input = true"
+        [formControl]="emailFormControl"
+        placeholder="beispielname@email.de"
+        [(ngModel)]="this.mailAdress"
+      />
       <mat-icon matSuffix>mail</mat-icon>
-      @if (!emailFormControl.valid &&
-      !emailFormControl.hasError('required')) {
+      @if (!emailFormControl.valid && !emailFormControl.hasError('required')) {
       <mat-error>*Bitte nutze eine gültige E-Mail-Adresse.</mat-error>
-      } @if (emailFormControl.hasError('required')) {
+      } @if (emailFormControl.hasError('required') && this.input) {
       <mat-error>*E-Mail wird benötigt.</mat-error>
-      } @if (emailFormControl.valid &&
-      !emailFormControl.hasError('required')) {
+      } @if (emailFormControl.valid && !emailFormControl.hasError('required')) {
       <mat-error class="green">*E-Mail ist gültig.</mat-error>
       }
     </div>

@@ -261,6 +261,9 @@ mat-drawer {
     background-color: transparent;
     display: flex;
     align-items: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    outline: unset;
     &:hover {
       cursor: pointer;
       background-color: #eceefe;

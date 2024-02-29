@@ -1,10 +1,9 @@
 <div class="dialog">
   <h1># {{ channelName }}</h1>
-  <button (click)="close()">X</button>
-  <div>
+  <button class="closeButton" (click)="close()"><mat-icon>close</mat-icon></button>
+  <div class="border">
     <div>
       <h2>Channel-Name</h2>
-      <button>Bearbeiten</button>
     </div>
     <input
       type="text"
@@ -13,10 +12,9 @@
       [(ngModel)]="channelName"
     />
   </div>
-  <div>
+  <div class="border">
     <div>
       <h2>Beschreibung</h2>
-      <button>Bearbeiten</button>
     </div>
     <input
       type="text"
@@ -25,10 +23,13 @@
       [(ngModel)]="channelDescription"
     />
   </div>
-  <div class="line">trennlinie</div>
+  <div class="line"></div>
   <div>
-    <h2>Erstellt von</h2>
-    <h1>irgend ein Name</h1>
+    <h3>Erstellt von</h3>
+    <h1 style="color: #535AF1;">{{userInfo.Name}}</h1>
   </div>
-  <button (click)="closeAndSave()">Channel aktualisieren</button>
+  <div></div>
+  <button class="saveButton" (click)="closeAndSave()">
+    Channel aktualisieren
+  </button>
 </div>

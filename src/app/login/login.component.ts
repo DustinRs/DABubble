@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { Firestore } from '@angular/fire/firestore';
+import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { collection, collectionData, getDocs } from '@angular/fire/firestore';
 import {
@@ -39,11 +39,14 @@ export class LoginComponent implements OnInit {
   hide = true;
   firestore: Firestore = inject(Firestore);
   items$: Observable<any[]>;
+  google: any;
   allUsers: any[] = [];
   userLogin: Login;
   emailValid = false;
   emailFormControl: FormControl;
   passwordFormControl: FormControl;
+  pwInput = false;
+  mailInput = false;
   arrayGuest = [
     {
       Name: 'Guest',
@@ -58,6 +61,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router) {
     const aCollection = collection(this.firestore, 'RegisteredUsers');
     this.items$ = collectionData(aCollection);
+    this.google = google;
     this.userLogin = new Login();
     this.passwordFormControl = new FormControl('', [
       Validators.required,
@@ -69,14 +73,17 @@ export class LoginComponent implements OnInit {
     ]);
   }
   ngOnInit(): void {
-    google.accounts.id.disableAutoSelect();
+    this.google.accounts.id.disableAutoSelect();
     sessionStorage.removeItem('loggedInUser');
-    google.accounts.id.initialize({
+    this.google.accounts.id.initialize({
       client_id:
         '79801300719-aop00ktvec4ap6cf4r4p15khg5ucmb4g.apps.googleusercontent.com',
       callback: (resp: any) => this.handleLogin(resp),
     });
-    google.accounts.id.renderButton(document.getElementById('googleLink'), {});
+    this.google.accounts.id.renderButton(
+      document.getElementById('googleLink'),
+      {}
+    );
   }
 
   async login() {
@@ -101,27 +108,40 @@ export class LoginComponent implements OnInit {
       mail == '' ||
       password == ''
     ) {
-      alert('doesnt match');
+      alert('Bitte gib eine gültige E-mail und ein gültiges Passwort an.');
     } else {
       if (
         mail['email'].toString() === this.userLogin.email &&
         password['password'].toString() === this.userLogin.password
       ) {
-        alert('login erfolgreich');
         sessionStorage.setItem('loggedInUser', JSON.stringify(arrayFiltered));
         this.router.navigateByUrl('/dashboard');
       } else {
-        alert('login nicht erfolgreich');
+        alert(
+          'Login nicht erfolgreich! Bitte gib eine gültige E-mail und ein gültiges Passwort an, setze dein Passwort zurück oder erstelle dir ein Konto!'
+        );
       }
     }
   }
 
-  handleLogin(response: any) {
+  async handleLogin(response: any) {
     if (response) {
       const payload = this.decodeToken(response.credential);
       sessionStorage.setItem('loggedInUser', JSON.stringify(payload));
     }
-    this.router.navigateByUrl('/dashboard');
+    let loggedInUser = JSON.parse(sessionStorage['loggedInUser']);
+    console.log('loggedInUser =', loggedInUser);
+    await setDoc(doc(this.firestore, 'Chatrooms', loggedInUser.name), {
+      id: loggedInUser.name,
+      avatars: [],
+      messages: [],
+      timestamps: [],
+      users: [],
+      avatar: loggedInUser.picture,
+      online: 'online',
+      link: 'chat'
+    });
+    await this.router.navigateByUrl('/dashboard');
     this.executeGlobalClick();
   }
 

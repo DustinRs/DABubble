@@ -67,17 +67,23 @@
     </div>
   </div>
   <div *ngIf="messages.length == 0" class="chatMessageDiv">
-    <div>
+    <div *ngIf="chatName === this.userInfo.Name" (click)="openProfile()">
       <img src="{{ chatAvatar }}" alt="" />
-      <span>{{ chatName }}</span>
+      <span><b>{{ chatName }}</b></span>
     </div>
-    <span
+    <span *ngIf="chatName === this.userInfo.Name"
+      ><span>Dieser Raum ist nur für dich da.</span>Mache dir Notizen, liste deine To-dos
+      auf oder bewahre Links und Dateien griffbereit auf. Du kannst hier auch
+      gerne Dinge mit dir selbst besprechen.</span
+    >
+    
+      <div *ngIf="chatName !== this.userInfo.Name" (click)="openProfileFriend()">
+        <img src="{{ chatAvatar }}" alt="" />
+        <span><b>{{ chatName }}</b></span>
+      </div>
+    <span *ngIf="chatName !== this.userInfo.Name"
       >Diese Unterhaltung findet nur zwischen
-      <span *ngIf="chatName === this.userInfo.Name" (click)="openProfile()"
-        ><mat-icon>alternate_email</mat-icon>{{ chatName }}</span
-      ><span
-        *ngIf="chatName !== this.userInfo.Name"
-        (click)="openProfileFriend()"
+      <span 
         ><mat-icon>alternate_email</mat-icon>{{ chatName }}</span
       >
       und dir statt.</span

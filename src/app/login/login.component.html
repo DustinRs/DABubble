@@ -1,7 +1,7 @@
 <section>
-  <!-- <div class="logoDiv">
+  <div class="logoDiv">
     <img src="assets/imgs/1. Logo animation.png" alt="">
-  </div> -->
+  </div>
   <div class="logo">
     <img src="assets/imgs/logo.png" alt="" />
     <h1>DABubble</h1>
@@ -24,11 +24,12 @@
         placeholder="beispielname@email.de"
         [(ngModel)]="userLogin.email"
         [email]="false"
+        (input)="mailInput = true"
       />
       <mat-icon matSuffix>mail</mat-icon>
       @if (!emailFormControl.valid && !emailFormControl.hasError('required')) {
       <mat-error>*Bitte nutze eine gültige E-Mail-Adresse.</mat-error>
-      } @if (emailFormControl.hasError('required')) {
+      } @if (emailFormControl.hasError('required')&& this.mailInput) {
       <mat-error>*E-Mail wird benötigt.</mat-error>
       } @if (emailFormControl.valid && !emailFormControl.hasError('required')) {
       <mat-error class="green">*E-Mail ist gültig.</mat-error>
@@ -40,8 +41,9 @@
         [formControl]="passwordFormControl"
         placeholder="Passwort"
         [(ngModel)]="userLogin.password"
+        (input)="pwInput = true"
       />
-      <mat-error *ngIf="passwordFormControl.hasError('required')"
+      <mat-error *ngIf="passwordFormControl.hasError('required') && this.pwInput"
         >*Passwort wird benötigt.</mat-error
       >
       <mat-error

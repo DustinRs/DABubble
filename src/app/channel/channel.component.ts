@@ -138,6 +138,7 @@ export class ChannelComponent {
     dialog.componentInstance.channelId = this.channelId;
     dialog.componentInstance.channelName = this.channelName;
     dialog.componentInstance.channelDescription = this.channelDescription;
+    dialog.componentInstance.userInfo = this.userInfo;
   }
 
   setWidth() {

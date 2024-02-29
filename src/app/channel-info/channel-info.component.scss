@@ -1,21 +1,76 @@
 .dialog {
+    position: relative;
     padding: 16px;
-    width: 360px;
-
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     >div {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
-        gap: 16px;
+        
         >div{
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
+            >h2 {
+            padding: 16px;
+            
+        }
         }
         >input{
-            width: 100%;
+            width:calc(100% - 48px) ;
+            margin-left: 16px;
+            margin-bottom: 16px;
+            border: unset;
+            background-color: #ECEEFE;
+            padding: 8px;
+            border-radius: 16px;
+            cursor: url('/assets/imgs/edit.png')16 16, auto;
         }
+        
     }
+}
+
+.closeButton {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    border: unset ;
+    outline: unset !important;
+    border-radius: 100%;
+    background-color: unset;
+    padding-top: 6px;
+    &:hover{
+        cursor: pointer;
+        background-color: #ECEEFE;
+    }
+}
+
+.saveButton {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    background-color: #444DF2;
+    padding: 8px;
+    border: unset;
+    border-radius: 32px;
+    color: white;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: #ADB0D9;
+}
+
+.border {
+    border: 1px solid #ADB0D9;
+    border-radius: 16px;
 }
