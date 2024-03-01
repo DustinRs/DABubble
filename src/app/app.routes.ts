@@ -8,6 +8,8 @@ import { SendEmailComponent } from './send-email/send-email.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ChannelComponent } from './channel/channel.component';
 import { ChatroomComponent } from './chatroom/chatroom.component';
+import { ImpressumComponent } from './impressum/impressum.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -16,6 +18,8 @@ export const routes: Routes = [
   { path: 'send-email', component: SendEmailComponent },
   { path: 'reset-pw', component: ResetPasswordComponent },
   { path: 'pickAvatar', component: PickAvatarComponent },
+  { path: 'impressum', component: ImpressumComponent },
+  { path: 'privacy', component: PrivacyComponent },
   {
     path: '',
     component: LayoutComponent,

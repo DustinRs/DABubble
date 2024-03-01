@@ -1,0 +1,54 @@
+section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #eceefe;
+    > mat-card {
+      width: 500px;
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 32px;
+      border-radius: 32px;
+      > h1 {
+        color: #444df2;
+        font-weight: 700;
+        font-size: 46px;
+      }
+      > p {
+        font-size: 16px;
+      }
+    }
+  }
+  
+  .logo {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    > img {
+      width: 80px;
+    }
+  }
+  .backButton {
+    position: absolute;
+    top: 48px;
+    left: 32px;
+    border: unset;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 100%;
+    &:hover {
+      cursor: pointer;
+      background-color: #eceefe;
+    }
+  }
