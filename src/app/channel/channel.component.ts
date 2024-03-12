@@ -57,8 +57,8 @@ export class ChannelComponent {
   emojiThread = false;
   reactions = false;
   reactionsThread = false;
-  icons:any[] = [];
-  iconsThread:any[] = [];
+  icons: any[] = [];
+  iconsThread: any[] = [];
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog) {
     const aCollection = collection(this.firestore, 'Channels');
@@ -164,7 +164,6 @@ export class ChannelComponent {
     const querySnapshot = await getDocs(collection(this.firestore, 'Threads'));
     let threads = querySnapshot.docs.map((doc) => doc.data());
     this.threadArray = threads['0'][`t1707688843397`];
-    
   }
 
   async sendMessageThread() {
@@ -194,8 +193,8 @@ export class ChannelComponent {
           {
             message:
               'Ja das stimmt. Ich habe gegoogelt und Angular17 ist die aktuellste Version!',
-            user: this.userInfo.Name,
-            avatar: this.userInfo.avatar,
+            user: 'Dustin Rohrschneider',
+            avatar: 'assets/imgs/00c.Charaters (8).png',
             timestamp: '1707807809308',
           },
           {
@@ -256,10 +255,10 @@ export class ChannelComponent {
   addReaction(emojiData: any) {
     let div: any = document.getElementById('reactions');
     let emoji = emojiData.emoji.native;
-    this.icons.push(emoji)
+    this.icons.push(emoji);
     div.classList.add('d-none');
     this.reactions = false;
-    console.log(emojiData.emoji)
+    console.log(emojiData.emoji);
   }
 
   reaction() {
@@ -276,10 +275,10 @@ export class ChannelComponent {
   addReactionThread(emojiData: any) {
     let div: any = document.getElementById('reactionsThread');
     let emoji = emojiData.emoji.native;
-    this.iconsThread.push(emoji)
+    this.iconsThread.push(emoji);
     div.classList.add('d-none');
     this.reactionsThread = false;
-    console.log(emojiData.emoji)
+    console.log(emojiData.emoji);
   }
 
   reactionThread() {

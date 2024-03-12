@@ -5,6 +5,7 @@ section {
   align-items: center;
   height: 100vh;
   background-color: #ECEEFE;
+  z-index: 1;
   > mat-card {
     width: 500px;
     padding: 48px;
@@ -64,43 +65,25 @@ section {
   bottom: 0;
   height: 100vh;
   background-color: #313ae5;
+  color: white;
   z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: backgroundLogin 6s ease 2s ;
+  gap: 32px;
+  cursor: default;
   > img {
     position: relative;
-      width: 640px;
-      animation: startScreen 4s linear;
+      width: 200px;
+      
+  }
+  >h1 {
+    margin: 0;
+    font-size: 72px;
   }
 }
 
-@keyframes startScreen {
-  0% {
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-  }
 
-  100% {
-    top: -360px;
-    right: 360px;
-    opacity: 0;
-  }
-}
-@keyframes backgroundLogin {
-  0% {
-    opacity: 1;
-    display: flex;
-  }
-
-  100% {
-    opacity: 0;
-    display: none;
-  }
-}
 
 .logo {
     position: absolute;

@@ -17,6 +17,16 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { animate, style, transition, trigger } from '@angular/animations';
+
+
+const enterTransition = transition(':enter', [
+  style({
+    opacity: 1,
+  }),
+  animate('5s ease-out', style({opacity: 0}))
+])
+const fadeOut = trigger('fadeOut', [enterTransition])
 
 @Component({
   selector: 'app-login',
@@ -31,11 +41,14 @@ import { CommonModule } from '@angular/common';
     RouterModule,
     ReactiveFormsModule,
     CommonModule,
+    
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
+  animations: [fadeOut]
 })
 export class LoginComponent implements OnInit {
+  isShown = false;
   hide = true;
   firestore: Firestore = inject(Firestore);
   items$: Observable<any[]>;
@@ -72,18 +85,27 @@ export class LoginComponent implements OnInit {
       this.validateMail(),
     ]);
   }
-  ngOnInit(): void {
-    this.google.accounts.id.disableAutoSelect();
+  ngOnInit() {
     sessionStorage.removeItem('loggedInUser');
-    this.google.accounts.id.initialize({
-      client_id:
-        '79801300719-aop00ktvec4ap6cf4r4p15khg5ucmb4g.apps.googleusercontent.com',
-      callback: (resp: any) => this.handleLogin(resp),
-    });
-    this.google.accounts.id.renderButton(
-      document.getElementById('googleLink'),
-      {}
-    );
+    this.fadeOut();
+    // this.google.accounts.id.initialize({
+    //   client_id:
+    //     '79801300719-aop00ktvec4ap6cf4r4p15khg5ucmb4g.apps.googleusercontent.com',
+    //   callback: (resp: any) => this.handleLogin(resp),
+    // });
+    // this.google.accounts.id.renderButton(
+    //   document.getElementById('googleLink'),
+    //   {}
+    // );
+  }
+
+  fadeOut() {
+    this.isShown = !this.isShown;
+
+    setTimeout(() => {
+     this.isShown = !this.isShown; 
+    }, 5000);
+    
   }
 
   async login() {

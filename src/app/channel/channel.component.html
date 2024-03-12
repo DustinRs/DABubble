@@ -67,7 +67,7 @@
         <div *ngIf="users[i] !== 'Dustin Rohrschneider'">
           <a 
             (click)="drawer2.toggle(); setWidth(); answerClicked(); getThread()"
-            >{{ threadChat.length }} Antworten</a
+            >{{ threadChat.length - 1 }} Antworten</a
           >
           <span> Letzte Antwort {{ lastAnswer }}</span>
         </div>
@@ -147,7 +147,7 @@
                     ><b>{{ thread.user }}</b></span
                   >
                 </div>
-                <div class="message">
+                <div style="color: white;" class="message">
                   <span>{{ thread.message }}</span>
                 </div>
                 <div class="iconDiv">
@@ -172,7 +172,7 @@
               </div>
             </div>
             <div class="lineDiv mgb" *ngIf="i == 0">
-              <span>{{ threadChat.length }} Antworten</span>
+              <span>{{ threadChat.length - 1 }} Antworten</span>
               <div class="line"></div>
             </div>
           </div>
