@@ -49,6 +49,29 @@
         <img src="assets/imgs/Workspace logo.png" alt="" />
         <h2>Code learning</h2>
         <!-- <button mat-button><mat-icon>edit_square</mat-icon></button> -->
+        <div class="inputDiv mobile">
+          <input
+            id="searchInput"
+            (click)="search()"
+            [(ngModel)]="searchInput"
+            (input)="search()"
+            matInput
+            placeholder="Code learning durchsuchen"
+          />
+          <mat-icon matSuffix>search</mat-icon>
+          <div id="searchResultsDivMobile" class="searchResultsDivMobile d-none">
+            <span *ngFor="let friend of friendsFiltered"
+              ><img src="{{ friend.avatar }}" alt="" /> {{ friend.Name }}</span
+            >
+            <span
+              *ngFor="let channel of channelsFiltered"
+              routerLink="{{ channel.link }}/{{ channel.id }}"
+              ># {{ channel.name }}</span
+            >
+            <!-- <span *ngFor="let message of messagesFiltered">{{message.messages}}</span> -->
+            <!-- <span *ngFor="let thread of threadsFiltered">{{thread.message}}</span> -->
+          </div>
+        </div>
       </div>
       <div>
         <div class="d-flex">
@@ -69,7 +92,7 @@
         </div>
         <div class="channels" id="channels">
           <mat-nav-list>
-            <a
+            <a (click)="setIndex()"
               mat-list-item
               *ngFor="let channel of channels"
               routerLink="{{ channel.link }}/{{ channel.id }}"
@@ -141,7 +164,7 @@
         </div>
       </div>
     </mat-drawer>
-    <mat-drawer-content class="overflow">
+    <mat-drawer-content id="matDrawer" class="overflow">
       <div>
         <router-outlet></router-outlet>
       </div>

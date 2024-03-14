@@ -67,3 +67,15 @@ img {
   align-items: center;
   gap: 16px;
 }
+
+@media (max-width: 520px) {
+  .dialog {
+    >mat-form-field {
+      width: calc(100% - 16px);
+    }
+  }
+
+  .mat-mdc-text-field-wrapper {
+    width: calc(100% - 16px) ;
+}
+}

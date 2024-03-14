@@ -168,4 +168,68 @@ mat-error{
 }
 
 
+@media (max-width: 520px) {
+  section {
+    > mat-card {
+      width: 90%;
+      padding: 16px;
+      gap: 16px;
+      >h1 {
+        font-size: 28px;
+        margin: 0;
+      }
+      >p {
+        font-size: 12px;
+      }
+    }
+  }
 
+  .inputDiv {
+    >mat-icon {
+      left: 20px;
+    }
+  }
+
+  .buttonDiv {
+    >button{
+      font-size: 12px;
+    }
+  }
+
+  .logo {
+    position: absolute;
+    top: 12px;
+    left: unset;
+}
+
+.signUpDiv {
+  position: absolute;
+  top: unset;
+  right: unset;
+  bottom: 20px;
+  align-items: center;
+  >a{
+    border-radius: 32px;
+    border: 1px solid #797EF3;
+    padding: 12px;
+  }
+}
+.linksBottom {
+  display: none;
+
+  
+}
+.logoDiv {
+  gap: 16px;
+  cursor: default;
+  > img {
+    position: relative;
+      width: 100px;
+      
+  }
+  >h1 {
+    margin: 0;
+    font-size: 32px;
+  }
+}
+}

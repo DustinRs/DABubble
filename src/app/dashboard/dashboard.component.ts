@@ -146,7 +146,9 @@ export class DashboardComponent implements OnInit {
 
   async search() {
     let div = document.getElementById('searchResultsDiv');
+    let divMobile = document.getElementById('searchResultsDivMobile');
     div?.classList.remove('d-none');
+    divMobile?.classList.remove('d-none');
     const friendsSnapshot = await getDocs(
       collection(this.firestore, 'Friends')
     );
@@ -182,8 +184,15 @@ export class DashboardComponent implements OnInit {
 
   clearSearch() {
     let div = document.getElementById('searchResultsDiv');
+    let divMobile = document.getElementById('searchResultsDivMobile');
     div?.classList.add('d-none');
+    divMobile?.classList.add('d-none');
     this.friendsFiltered = [];
     this.channelsFiltered = [];
+  }
+
+  setIndex() {
+    let div = document.getElementById('matDrawer');
+    div?.classList.add('z3');
   }
 }

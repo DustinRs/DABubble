@@ -132,4 +132,82 @@ a {
       left: 148px;
     }
   }
+
+  @media (max-width: 520px) {
+    section {
+      > mat-card {
+        width: 90%;
+        padding: 16px;
+        gap: 16px;
+        >h1 {
+          width: 80%;
+          font-size: 28px;
+          margin: 0;
+        }
+        >p {
+          font-size: 12px;
+        }
+      }
+    }
+  
+    .inputDiv {
+      >mat-icon {
+        left: 20px;
+      }
+    }
+  
+    .buttonDiv {
+      >button{
+        font-size: 12px;
+        left: unset;
+      }
+    }
+  
+    .logo {
+      position: absolute;
+      top: 12px;
+      left: unset;
+  }
+  
+  .signUpDiv {
+    position: absolute;
+    top: unset;
+    right: unset;
+    bottom: 20px;
+    align-items: center;
+    >a{
+      border-radius: 32px;
+      border: 1px solid #797EF3;
+      padding: 12px;
+    }
+  }
+  .linksBottom {
+    display: none;
+  
+    
+  }
+  
+  .backButton {
+    top: 16px;
+    left: 16px;
+  }
+
+  .avatar {
+    width: 80px;
+  }
+
+  mat-list{
+    display: flex;
+    gap: 4px;
+    >img{
+      width: 40px;
+    }
+  }
+
+  .d-flex {
+    flex-direction: column;
+    gap: 16px;
+    
+  }
+  }
   

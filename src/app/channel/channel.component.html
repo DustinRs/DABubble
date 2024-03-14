@@ -1,5 +1,6 @@
 <div id="channelRoom" class="channelRoom">
   <header>
+    <button (click)="removeIndex()" class="backButton"><mat-icon>arrow_back</mat-icon></button>
     <h1 (click)="openChannelInfo()"># {{ channelName }}</h1>
     <div class="avatarDiv">
       <div (click)="showPeople()">
@@ -30,7 +31,7 @@
         </div>
 
         <div class="message">
-          <span style="color: white;">{{ message }}</span>
+          <span style="color: white">{{ message }}</span>
         </div>
         <div class="iconDiv">
           <emoji-mart
@@ -65,7 +66,7 @@
           <span>{{ message }}</span>
         </div>
         <div *ngIf="users[i] !== 'Dustin Rohrschneider'">
-          <a 
+          <a
             (click)="drawer2.toggle(); setWidth(); answerClicked(); getThread()"
             >{{ threadChat.length - 1 }} Antworten</a
           >
@@ -89,7 +90,12 @@
             id="emoji"
             class="d-none"
             (emojiClick)="addEmoji($event)"
-            [style]="{ position: 'absolute', bottom: '40px', left: '16px' }"
+            [style]="{
+              position: 'absolute',
+              bottom: '40px',
+              left: '0px',
+              width: '100%'
+            }"
             title="Pick your emoji…"
             emoji="point_up"
           ></emoji-mart>
@@ -147,7 +153,7 @@
                     ><b>{{ thread.user }}</b></span
                   >
                 </div>
-                <div style="color: white;" class="message">
+                <div style="color: white" class="message">
                   <span>{{ thread.message }}</span>
                 </div>
                 <div class="iconDiv">
@@ -195,7 +201,8 @@
                   [style]="{
                     position: 'absolute',
                     bottom: '40px',
-                    left: '16px'
+                    left: '0px',
+                    width: '100%'
                   }"
                   title="Pick your emoji…"
                   emoji="point_up"

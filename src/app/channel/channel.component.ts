@@ -291,4 +291,9 @@ export class ChannelComponent {
       this.reactionsThread = false;
     }
   }
+
+  removeIndex() {
+    let div = document.getElementById('matDrawer');
+    div?.classList.remove('z3');
+  }
 }

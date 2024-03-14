@@ -3,10 +3,20 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 16px;
-  width: 360px;
+  width: 100%;
   > mat-form-field {
     width: 100%;
   }
 }
 
+@media (max-width: 520px) {
+  .dialog {
+    >mat-form-field {
+      width: calc(100% - 32px)
+    }
+  }
 
+  img {
+    width: 36px;
+  }
+}

@@ -40,42 +40,40 @@ header {
 
 .searchResultsDiv {
   position: absolute;
-    left: 0px;
-    bottom: -204px;
-    z-index: 5;
-    width: 104%;
-    border-radius: 32px;
-    height: 200px;
+  left: 0px;
+  bottom: -204px;
+  z-index: 5;
+  width: 104%;
+  border-radius: 32px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  > span {
+    background-color: white;
+    list-style: none;
     display: flex;
-    flex-direction: column;
-      >span {
-        background-color: white;
-        list-style: none;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding-left: 16px;
-        padding-right: 16px;
-        padding-bottom: 4px;
-        padding-top: 4px;
-        border-bottom: 2px solid #eceefe;
-        &:hover {
-          background-color: #eceefe;
-          cursor: pointer;
-        }
-        >img {
-          width: 24px;
-        }
-        }
-        >span:first-child {
-          border-radius: 16px 16px 0px 0px;
-        }
-        >span:last-child {
-          border-radius: 0px 0px 16px 16px;
-          border-bottom: none;
-        }
-      
-    
+    align-items: center;
+    gap: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    border-bottom: 2px solid #eceefe;
+    &:hover {
+      background-color: #eceefe;
+      cursor: pointer;
+    }
+    > img {
+      width: 24px;
+    }
+  }
+  > span:first-child {
+    border-radius: 16px 16px 0px 0px;
+  }
+  > span:last-child {
+    border-radius: 0px 0px 16px 16px;
+    border-bottom: none;
+  }
 }
 
 .logo {
@@ -125,8 +123,8 @@ h3 {
   height: 100%;
   background-color: transparent;
   > mat-drawer {
-    
     border-radius: 32px;
+    z-index: 1;
   }
 }
 
@@ -264,8 +262,47 @@ mat-drawer-content {
   justify-content: center;
 }
 
+.searchResultsDivMobile {
+  position: absolute;
+  left: 0px;
+  bottom: -204px;
+  z-index: 5;
+  width: 104%;
+  border-radius: 32px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  > span {
+    background-color: white;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    border-bottom: 2px solid #eceefe;
+    &:hover {
+      background-color: #eceefe;
+      cursor: pointer;
+    }
+    > img {
+      width: 24px;
+    }
+  }
+  > span:first-child {
+    border-radius: 16px 16px 0px 0px;
+  }
+  > span:last-child {
+    border-radius: 0px 0px 16px 16px;
+    border-bottom: none;
+  }
+  display: none;
+}
 .d-none {
   display: none;
+  z-index: 0;
 }
 
 .turn {
@@ -287,8 +324,125 @@ a {
 
 mat-list-item {
   border-radius: 16px !important;
-  &:hover{
+  &:hover {
     cursor: pointer;
     border-radius: 16px;
   }
+}
+
+.mobile {
+  display: none;
+}
+
+
+@media (max-width: 520px) {
+  section {
+    gap: 0px;
+    padding: 0px;
+  }
+
+  header {
+    justify-content: space-between;
+  }
+  .inputDiv {
+    display: none;
+  }
+
+  .logo {
+    gap: 16px;
+    width: unset;
+    margin-right: 0px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    > img {
+      width: 40px;
+    }
+    > h1 {
+      font-size: 18px;
+    }
+  }
+
+  .profileDiv {
+    width: unset;
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    > div {
+      > img {
+        width: 40px;
+      }
+    }
+
+    > h1 {
+      display: none;
+    }
+    > mat-icon {
+      display: none;
+    }
+  }
+
+  .onlineUser {
+    top: 40px;
+    right: 16px;
+    width: 10px;
+    height: 10px;
+  }
+
+  .content-container {
+    > mat-drawer {
+      width: 100%;
+      border-radius: 0px;
+      z-index: 2;
+    }
+  }
+
+  .toggleButton1 {
+    display: none;
+  }
+
+  .d-flex {
+    justify-content: center;
+    > button {
+      margin: 0;
+    }
+  }
+
+  .leftTop {
+    > img {
+      display: none;
+    }
+    > h2 {
+      display: none;
+    }
+  }
+  .mobile {
+    display: block;
+  }
+
+  .inputDiv {
+    margin-right: 16px;
+    margin-left: 16px;
+    border: 1px solid #ECEEFE;
+    border-radius: 32px;
+  }
+
+  .searchResultsDivMobile {
+    display: flex;
+    width: 100%;
+    
+  }
+.mat-drawer-content {
+  margin-left: 0 !important;
+  padding: 0;
+}
+
+.z3 {
+  z-index: 3;
+}
+
+
 }
