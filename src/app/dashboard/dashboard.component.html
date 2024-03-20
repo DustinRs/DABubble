@@ -15,7 +15,9 @@
       />
       <mat-icon matSuffix>search</mat-icon>
       <div id="searchResultsDiv" class="searchResultsDiv d-none">
-        <span *ngFor="let friend of friendsFiltered"
+        <span
+          *ngFor="let friend of friendsFiltered"
+          routerLink="chat/{{ friend.Name }}"
           ><img src="{{ friend.avatar }}" alt="" /> {{ friend.Name }}</span
         >
         <span
@@ -59,8 +61,13 @@
             placeholder="Code learning durchsuchen"
           />
           <mat-icon matSuffix>search</mat-icon>
-          <div id="searchResultsDivMobile" class="searchResultsDivMobile d-none">
-            <span *ngFor="let friend of friendsFiltered"
+          <div
+            id="searchResultsDivMobile"
+            class="searchResultsDivMobile d-none"
+          >
+            <span
+              *ngFor="let friend of friendsFiltered"
+              routerLink="chat/{{ friend.Name }}"
               ><img src="{{ friend.avatar }}" alt="" /> {{ friend.Name }}</span
             >
             <span
@@ -92,7 +99,8 @@
         </div>
         <div class="channels" id="channels">
           <mat-nav-list>
-            <a (click)="setIndex()"
+            <a
+              (click)="setIndex()"
               mat-list-item
               *ngFor="let channel of channels"
               routerLink="{{ channel.link }}/{{ channel.id }}"
@@ -123,8 +131,10 @@
         <div class="friends" id="friends">
           <mat-list *ngIf="!googleAcc">
             <mat-list-item
-              *ngFor="let friend of friends" (click)="setIndex()"
-              routerLink="chat/{{ friend.Name }}" routerLinkActive="isActive"
+              *ngFor="let friend of friends"
+              (click)="setIndex()"
+              routerLink="chat/{{ friend.Name }}"
+              routerLinkActive="isActive"
             >
               <img matListItemAvatar src="{{ friend.avatar }}" />
               <div class="{{ friend.online }}"></div>
@@ -138,7 +148,11 @@
             </mat-list-item>
           </mat-list>
           <mat-list *ngIf="googleAcc">
-            <mat-list-item (click)="setIndex()" routerLink="chat/{{ userInfo.name }}" routerLinkActive="isActive">
+            <mat-list-item
+              (click)="setIndex()"
+              routerLink="chat/{{ userInfo.name }}"
+              routerLinkActive="isActive"
+            >
               <img matListItemAvatar src="{{ userInfo.picture }}" />
               <div class="online"></div>
               <h3 matListItemTitle>{{ userInfo.name }} <span>(Du)</span></h3>
@@ -148,7 +162,8 @@
             </mat-list-item>
             <mat-list-item
               *ngFor="let friend of friends"
-              routerLink="chat/{{ friend.Name }}" routerLinkActive="isActive"
+              routerLink="chat/{{ friend.Name }}"
+              routerLinkActive="isActive"
             >
               <img matListItemAvatar src="{{ friend.avatar }}" />
               <div class="{{ friend.online }}"></div>

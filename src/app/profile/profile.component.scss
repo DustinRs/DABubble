@@ -46,3 +46,21 @@ h1,h2 {
     background-color: green;
     border: 2px solid white;
   }
+
+  button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: unset;
+    background-color: unset;
+    outline: unset;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    &:hover {
+      background-color: #eceefe;
+      border-radius: 100%;
+    }
+  }

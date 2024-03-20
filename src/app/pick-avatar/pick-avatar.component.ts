@@ -15,6 +15,7 @@ import {
 } from '@angular/fire/firestore';
 import { User } from '../../models/user.class';
 import { doc, updateDoc } from 'firebase/firestore';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-pick-avatar',
@@ -37,6 +38,7 @@ export class PickAvatarComponent {
   items$: Observable<any[]>;
   user!: User;
   userName: any;
+fileName: any;
 
   constructor(private router: Router) {
     const aCollection = collection(this.firestore, 'RegisteredUsers');
@@ -105,4 +107,22 @@ export class PickAvatarComponent {
     let overlay = document.getElementById('overlay');
     overlay?.classList.add('right');
   }
+
+//   onFileSelected(event:any) {
+
+//     const file:File = event.target.files[0];
+
+//     if (file) {
+
+//         this.fileName = file.name;
+
+//         const formData = new FormData();
+
+//         formData.append("thumbnail", file);
+
+//         const upload$ = this.http.post("/api/thumbnail-upload", formData);
+
+//         upload$.subscribe();
+//     }
+// }
 }

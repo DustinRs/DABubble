@@ -64,11 +64,14 @@ export class ChannelInfoComponent {
     this.route.navigateByUrl('', { skipLocationChange: true }).then(() => {
       this.route.navigate([`/dashboard`]);
     });
-
-    this.route
+    setTimeout(() => {
+     this.route
       .navigateByUrl('/dashboard', { skipLocationChange: true })
       .then(() => {
         this.route.navigate([`/dashboard/channel/${this.channelId}`]);
-      });
+      }); 
+    }, 100);
+
+    
   }
 }

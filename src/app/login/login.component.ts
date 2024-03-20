@@ -77,7 +77,10 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
     sessionStorage.removeItem('loggedInUser');
-    this.fadeOut();
+    if (sessionStorage.getItem('played') !== 'played') {
+      this.fadeOut();
+    }
+    
     this.google.accounts.id.initialize({
       client_id:
         '79801300719-5msnj80prd403pds2ojodaoksucjig99.apps.googleusercontent.com',
@@ -93,7 +96,8 @@ export class LoginComponent implements OnInit {
     this.isShown = !this.isShown;
     setTimeout(() => {
       this.isShown = !this.isShown;
-    }, 5000);
+    }, 4000);
+    sessionStorage.setItem('played', 'played');
   }
 
   async login() {

@@ -1,11 +1,11 @@
 <div class="dialog">
-
+  <button (click)="close()" class="button"><mat-icon>close</mat-icon></button>
     <h4>Mitglieder hinzufügen</h4>
     <mat-form-field>
       <mat-select [formControl]="friends" [(ngModel)]="peoples3" multiple>
         <div *ngFor="let friend of friendsList">
           <mat-option class="mat-option" [value]="friend"
-            ><img src="{{ friend.avatar }}" alt="" />{{ friend.Name }}</mat-option
+            ><img src="{{ friend.avatar }}" alt="" /><span class="listName">{{ friend.Name }}</span></mat-option
           >
         </div>
       </mat-select>

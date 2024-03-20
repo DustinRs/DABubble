@@ -4,6 +4,7 @@ import {
   collection,
   collectionData,
   doc,
+  getDocs,
   setDoc,
 } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
@@ -51,12 +52,18 @@ export class CreateChannelComponent {
 
   async saveChannel() {
     this.channel.id = Date.now().toString();
-
-    await setDoc(
+    const querySnapshot = await getDocs(collection(this.firestore, 'Channels'));
+    let channels = querySnapshot.docs.map((doc) => doc.data());
+    let filteredName = channels.filter((c) => c['name'] === this.channel.name);
+    console.log(filteredName)
+    console.log(this.channel.name)
+    if (this.channel.name === filteredName['0']['name']) {
+      alert('Channel existiert bereits');
+    } else {
+      await setDoc(
       doc(this.firestore, 'Channels', 'C' + this.channel.id),
       this.channel.asJson()
     );
-
     this.dialogRef.close();
     this.route.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.route.navigate([`dashboard`]);
@@ -68,5 +75,8 @@ export class CreateChannelComponent {
           this.route.navigate([`/dashboard/channel/${this.channel.id}`]);
         });
     }, 500);
+    }
+
+    
   }
 }

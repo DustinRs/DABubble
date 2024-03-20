@@ -23,6 +23,9 @@ export class Channel {
     }
   
     asJson() {
+      if (this.name.includes('#')) {
+        this.name = this.name.replace('#', '');
+      }
       return {
         name: this.name,
         description: this.description,

@@ -403,26 +403,30 @@ mat-drawer-div {
     > header {
       padding-bottom: 0px;
       border-radius: 0px;
+      justify-content: center;
+      gap: 16px;
       > h1 {
         font-size: 18px;
         margin-top: 16px;
-        margin-left: 16px;
+        margin-left: 0px;
+        word-break: break-word;
         &:hover {
           cursor: pointer;
           background-color: #eceefe;
         }
       }
       > button {
-        margin: 16px;
+        margin: 0px;
       }
     }
   }
 
   .avatarDiv {
     flex-wrap: unset;
-    gap: 8px;
+    gap: 0px;
     margin-right: 0px;
     > div {
+      padding-left: 16px;
       > div {
         > img {
           width: 28px;

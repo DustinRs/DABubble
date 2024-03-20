@@ -11,6 +11,7 @@ import {
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
@@ -28,6 +29,7 @@ import { Observable } from 'rxjs';
     MatInputModule,
     FormsModule,
     CommonModule,
+    MatIconModule
   ],
   templateUrl: './channel-dialog.component.html',
   styleUrl: './channel-dialog.component.scss',
@@ -111,5 +113,8 @@ export class ChannelDialogComponent {
       .then(() => {
         this.route.navigate([`/dashboard/channel/${this.channelId}`]);
       });
+  }
+  close() {
+    this.dialogRef.close();
   }
 }

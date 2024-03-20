@@ -1,12 +1,12 @@
 <div class="dialog">
   <div>
     <h1>Profil</h1>
-    <button (click)="close()">X</button>
+    <button (click)="close()"><mat-icon>close</mat-icon></button>
   </div>
   <img src="{{ avatar }}" alt="" />
   <div>
     <h1>{{ name }}</h1>
-    <button>Bearbeiten</button>
+    <!-- <button>Bearbeiten</button> -->
   </div>
   <div class="onlineDiv">
     <div class="{{ online }}"></div>

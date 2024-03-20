@@ -3,20 +3,53 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 16px;
-  width: 100%;
+  width: 360px;
   > mat-form-field {
     width: 100%;
   }
 }
 
+.button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border: unset;
+  background-color: unset;
+  outline: unset;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  &:hover {
+    background-color: #eceefe;
+    border-radius: 100%;
+  }
+}
+
+img {
+  width: 36px;
+  margin-right: 8px;
+}
+
+.listName {
+  position: absolute;
+  top: 12px;
+  left: 96px;
+  right: 0;
+  bottom: 0;
+}
+
+
 @media (max-width: 520px) {
   .dialog {
+    width: 200px;
     >mat-form-field {
-      width: calc(100% - 32px)
+      width: calc(100%)
     }
   }
 
   img {
-    width: 36px;
+    width: 28px;
   }
 }
