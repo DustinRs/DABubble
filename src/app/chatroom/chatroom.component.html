@@ -1,5 +1,6 @@
 <div id="channelRoom" class="channelRoom">
   <header>
+    <button (click)="removeIndex()" class="backButton"><mat-icon>arrow_back</mat-icon></button>
     <div *ngIf="chatName === this.userInfo.Name" (click)="openProfile()">
       <img src="{{ chatAvatar }}" alt="" />
       <h1>{{ chatName }}</h1>
@@ -104,7 +105,10 @@
             id="emoji"
             class="d-none"
             (emojiClick)="addEmoji($event)"
-            [style]="{ position: 'absolute', bottom: '40px', left: '16px' }"
+            [style]="{ position: 'absolute',
+            bottom: '40px',
+            left: '0px',
+            width: '100%' }"
             title="Pick your emoji…"
             emoji="point_up"
           ></emoji-mart>

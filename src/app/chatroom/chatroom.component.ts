@@ -165,4 +165,9 @@ export class ChatroomComponent {
     const dialog = this.dialog.open(ProfilefriendComponent);
     dialog.componentInstance.friendId = this.chatId;
   }
+
+  removeIndex() {
+    let div = document.getElementById('matDrawer');
+    div?.classList.remove('z3');
+  }
 }

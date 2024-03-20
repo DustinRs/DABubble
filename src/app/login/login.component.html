@@ -1,7 +1,7 @@
 <section>
-  <div *ngIf="isShown" class="logoDiv" @fadeOut>
-    <img src="assets/imgs/logo.png" alt="">
-    <h1>DABubble</h1>
+  <div *ngIf="isShown" class="animate__animated animate__fadeOut animate__delay-3s logoDiv">
+    <img class="animate__animated animate__backInDown" src="assets/imgs/logo.png" alt="">
+    <h1 class="animate__animated animate__fadeInLeft">DABubble</h1>
   </div>
   <div class="logo">
     <img src="assets/imgs/logo.png" alt="" />
@@ -65,12 +65,12 @@
 
     <a routerLink="/send-email">Passwort vergessen?</a>
 
-    <!-- <div class="w-100 d-flex">
+    <div class="w-100 d-flex">
       <div class="line"></div>
       ODER
       <div class="line"></div>
     </div>
-    <a id="googleLink" class="googleLink" href=""></a> -->
+    <div id="googleLink" class="googleLink"></div>
     <div class="buttonDiv">
       <button (click)="login()" mat-raised-button color="primary">
         Anmelden

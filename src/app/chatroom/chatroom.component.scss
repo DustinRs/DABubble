@@ -287,3 +287,101 @@ mat-drawer {
   background-color: grey;
   border: 2px solid white;
 }
+
+.backButton {
+  display: none;
+}
+
+@media (max-width: 520px) {
+  .channelRoom {
+    border-radius: 0px;
+    height: calc(100vh - 96px);
+    > header {
+      padding-bottom: 0px;
+      border-radius: 0px;
+      > h1 {
+        font-size: 18px;
+        margin-top: 16px;
+        margin-left: 16px;
+        &:hover {
+          cursor: pointer;
+          background-color: #eceefe;
+        }
+      }
+      > button {
+        margin: 16px;
+      }
+    }
+  }
+
+  .avatarDiv {
+    flex-wrap: unset;
+    gap: 8px;
+    margin-right: 0px;
+    > div {
+      > div {
+        > img {
+          width: 28px;
+        }
+      }
+    }
+  }
+
+  .message {
+    margin-left: 16px;
+  }
+
+  .messageOthers {
+    margin-right: 16px;
+  }
+
+  .date {
+    width: 50%;
+  }
+
+  mat-drawer {
+    width: 100%;
+  }
+
+  .mat-drawer.mat-drawer-end[_ngcontent-ng-c2993336596] {
+    border-radius: 0px;
+  }
+
+  .threadTop {
+    > h1 {
+      font-size: 18px;
+      margin: 0;
+    }
+  }
+
+  .lineDiv[_ngcontent-ng-c2993336596] > span[_ngcontent-ng-c2993336596] {
+    width: 130px;
+    color: #adb0d9;
+  }
+
+  .backButton {
+    border: unset;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 100%;
+    &:hover {
+      cursor: pointer;
+      background-color: #eceefe;
+    }
+  }
+  img {
+    width: 48px;
+  }
+
+  .online {
+    top: 52px;
+    left: 52px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+}

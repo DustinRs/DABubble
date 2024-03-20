@@ -123,7 +123,7 @@
         <div class="friends" id="friends">
           <mat-list *ngIf="!googleAcc">
             <mat-list-item
-              *ngFor="let friend of friends"
+              *ngFor="let friend of friends" (click)="setIndex()"
               routerLink="chat/{{ friend.Name }}" routerLinkActive="isActive"
             >
               <img matListItemAvatar src="{{ friend.avatar }}" />
@@ -138,7 +138,7 @@
             </mat-list-item>
           </mat-list>
           <mat-list *ngIf="googleAcc">
-            <mat-list-item routerLink="chat/{{ userInfo.name }}" routerLinkActive="isActive">
+            <mat-list-item (click)="setIndex()" routerLink="chat/{{ userInfo.name }}" routerLinkActive="isActive">
               <img matListItemAvatar src="{{ userInfo.picture }}" />
               <div class="online"></div>
               <h3 matListItemTitle>{{ userInfo.name }} <span>(Du)</span></h3>

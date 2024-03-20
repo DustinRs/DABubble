@@ -392,6 +392,10 @@ mat-drawer-div {
   background-color: #adb0d9;
 }
 
+.backButton {
+  display: none;
+}
+
 @media (max-width: 520px) {
   .channelRoom {
     border-radius: 0px;

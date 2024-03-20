@@ -18,15 +18,7 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { animate, style, transition, trigger } from '@angular/animations';
-
-
-const enterTransition = transition(':enter', [
-  style({
-    opacity: 1,
-  }),
-  animate('5s ease-out', style({opacity: 0}))
-])
-const fadeOut = trigger('fadeOut', [enterTransition])
+import 'animate.css';
 
 @Component({
   selector: 'app-login',
@@ -41,11 +33,9 @@ const fadeOut = trigger('fadeOut', [enterTransition])
     RouterModule,
     ReactiveFormsModule,
     CommonModule,
-    
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
-  animations: [fadeOut]
 })
 export class LoginComponent implements OnInit {
   isShown = false;
@@ -88,24 +78,22 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     sessionStorage.removeItem('loggedInUser');
     this.fadeOut();
-    // this.google.accounts.id.initialize({
-    //   client_id:
-    //     '79801300719-aop00ktvec4ap6cf4r4p15khg5ucmb4g.apps.googleusercontent.com',
-    //   callback: (resp: any) => this.handleLogin(resp),
-    // });
-    // this.google.accounts.id.renderButton(
-    //   document.getElementById('googleLink'),
-    //   {}
-    // );
+    this.google.accounts.id.initialize({
+      client_id:
+        '79801300719-5msnj80prd403pds2ojodaoksucjig99.apps.googleusercontent.com',
+      callback: (resp: any) => this.handleLogin(resp),
+    });
+    this.google.accounts.id.renderButton(
+      document.getElementById('googleLink'),
+      {}
+    );
   }
 
   fadeOut() {
     this.isShown = !this.isShown;
-
     setTimeout(() => {
-     this.isShown = !this.isShown; 
+      this.isShown = !this.isShown;
     }, 5000);
-    
   }
 
   async login() {
@@ -161,7 +149,7 @@ export class LoginComponent implements OnInit {
       users: [],
       avatar: loggedInUser.picture,
       online: 'online',
-      link: 'chat'
+      link: 'chat',
     });
     await this.router.navigateByUrl('/dashboard');
     this.executeGlobalClick();
