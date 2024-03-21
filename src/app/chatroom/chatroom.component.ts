@@ -170,4 +170,10 @@ export class ChatroomComponent {
     let div = document.getElementById('matDrawer');
     div?.classList.remove('z3');
   }
+
+  handleEnterKeyPress(text:string) {
+    if (text === 'chatroom') {
+      this.sendMessage();
+    } 
+  }
 }

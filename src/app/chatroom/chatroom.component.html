@@ -95,7 +95,7 @@
       <textarea
         id="chatInput"
         type="text"
-        placeholder="Nachricht an {{ chatName }}"
+        placeholder="Nachricht an {{ chatName }}" (keydown.enter)="handleEnterKeyPress('chatroom')"
       ></textarea>
       <div>
         <div>
