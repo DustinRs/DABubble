@@ -33,7 +33,7 @@
     <div class="profileDiv" [matMenuTriggerFor]="beforeMenu">
       <h1 *ngIf="!googleAcc">{{ userInfo.Name }}</h1>
       <h1 *ngIf="googleAcc">{{ userInfo.name }}</h1>
-      <div>
+      <div class="onlineDiv">
         <img *ngIf="!googleAcc" src="{{ userInfo.avatar }}" alt="" />
         <img *ngIf="googleAcc" src="{{ userInfo.picture }}" alt="" />
         <div class="onlineUser"></div>

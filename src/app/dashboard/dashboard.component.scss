@@ -38,6 +38,10 @@ header {
   }
 }
 
+.onlineDiv{
+  position: relative;
+}
+
 .searchResultsDiv {
   position: absolute;
   left: 0px;
@@ -180,8 +184,8 @@ mat-drawer-content {
 
 .onlineUser {
   position: absolute;
-  top: 48px;
-  right: 48px;
+  top: 52px;
+  right: 0px;
   width: 13px;
   height: 13px;
   border-radius: 100%;
@@ -386,8 +390,8 @@ mat-list-item {
   }
 
   .onlineUser {
-    top: 40px;
-    right: 16px;
+    top: 32px;
+    right: 0px;
     width: 10px;
     height: 10px;
   }
