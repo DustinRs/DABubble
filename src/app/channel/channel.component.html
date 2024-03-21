@@ -80,7 +80,7 @@
       <textarea
         id="channelInput"
         type="text"
-        placeholder="Nachricht an # {{ channelName }}"
+        placeholder="Nachricht an # {{ channelName }}" (keydown.enter)="handleEnterKeyPress('channel')"
       ></textarea>
       <div>
         <div>
@@ -188,7 +188,7 @@
             <textarea
               id="threadInput"
               type="text"
-              placeholder="Antworten..."
+              placeholder="Antworten..." (keydown.enter)="handleEnterKeyPress('thread')"
             ></textarea>
             <div>
               <div>

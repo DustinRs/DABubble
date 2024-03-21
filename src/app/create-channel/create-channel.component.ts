@@ -40,6 +40,7 @@ export class CreateChannelComponent {
   firestore: Firestore = inject(Firestore);
   channel = new Channel();
   items$: any;
+  emptyArray: any[] | undefined;
 
   constructor(
     public dialogRef: MatDialogRef<CreateChannelComponent>,
@@ -55,28 +56,27 @@ export class CreateChannelComponent {
     const querySnapshot = await getDocs(collection(this.firestore, 'Channels'));
     let channels = querySnapshot.docs.map((doc) => doc.data());
     let filteredName = channels.filter((c) => c['name'] === this.channel.name);
-    console.log(filteredName)
-    console.log(this.channel.name)
-    if (this.channel.name === filteredName['0']['name']) {
-      alert('Channel existiert bereits');
-    } else {
-      await setDoc(
-      doc(this.firestore, 'Channels', 'C' + this.channel.id),
-      this.channel.asJson()
-    );
-    this.dialogRef.close();
-    this.route.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.route.navigate([`dashboard`]);
-    });
-    setTimeout(() => {
-      this.route
-        .navigateByUrl('/dashboard', { skipLocationChange: true })
-        .then(() => {
-          this.route.navigate([`/dashboard/channel/${this.channel.id}`]);
-        });
-    }, 500);
-    }
-
+    console.log(filteredName);
+    console.log(this.channel.name);
     
+    if (filteredName === undefined || filteredName.length === 0) {
+      await setDoc(
+        doc(this.firestore, 'Channels', 'C' + this.channel.id),
+        this.channel.asJson()
+      );
+      this.dialogRef.close();
+      this.route.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.route.navigate([`dashboard`]);
+      });
+      setTimeout(() => {
+        this.route
+          .navigateByUrl('/dashboard', { skipLocationChange: true })
+          .then(() => {
+            this.route.navigate([`/dashboard/channel/${this.channel.id}`]);
+          });
+      }, 500);
+    } else {
+      alert('Channel existiert bereits, wähle einen anderen Namen!');
+    }
   }
 }

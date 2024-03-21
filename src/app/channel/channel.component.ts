@@ -59,7 +59,7 @@ export class ChannelComponent {
   reactionsThread = false;
   icons: any[] = [];
   iconsThread: any[] = [];
-
+  
   constructor(private route: ActivatedRoute, public dialog: MatDialog) {
     const aCollection = collection(this.firestore, 'Channels');
     this.items$ = collectionData(aCollection);
@@ -295,5 +295,14 @@ export class ChannelComponent {
   removeIndex() {
     let div = document.getElementById('matDrawer');
     div?.classList.remove('z3');
+  }
+
+  handleEnterKeyPress(text:string) {
+    if (text === 'channel') {
+      this.sendMessage();
+    } else
+    if (text === 'thread') {
+      this.sendMessageThread();
+    }
   }
 }
