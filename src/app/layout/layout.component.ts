@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -9,5 +9,16 @@ import { RouterModule } from '@angular/router';
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
+firstLoad = false;
 
+  constructor(private router: Router) {
+
+  }
+
+  ngOnInit(){
+    if (sessionStorage.getItem('firstLoad') !== 'loaded') {
+      this.router.navigateByUrl('login');
+      
+    }
+  }
 }

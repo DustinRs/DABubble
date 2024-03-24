@@ -77,6 +77,7 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
     sessionStorage.removeItem('loggedInUser');
+    sessionStorage.setItem('firstLoad', 'loaded');
     if (sessionStorage.getItem('played') !== 'played') {
       this.fadeOut();
     }

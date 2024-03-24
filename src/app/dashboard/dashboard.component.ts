@@ -118,6 +118,7 @@ export class DashboardComponent implements OnInit {
     google.accounts.id.disableAutoSelect();
     sessionStorage.removeItem('loggedInUser');
     sessionStorage.removeItem('played');
+    sessionStorage.removeItem('firstLoad');
     this.router.navigateByUrl('');
   }
 

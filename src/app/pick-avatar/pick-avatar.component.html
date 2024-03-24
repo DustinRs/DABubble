@@ -12,16 +12,24 @@
 
     <img
       class="avatar"
-      *ngIf="avatarPicked == false"
+      *ngIf="!avatarPicked && !customPicture"
       src="assets/imgs/profileEmpty.png"
       alt=""
     />
     <img
       class="avatar"
-      *ngIf="avatarPicked == true"
+      *ngIf="avatarPicked && !customPicture"
       src="{{ imgPath }}"
       alt=""
     />
+    <img
+      class="avatar"
+      *ngIf="customPicture == true"
+      id="imagePreview"
+      #imagePreview
+      alt=""
+    />
+    
     <h2>{{ userName }}</h2>
     <p>Aus der Liste wählen:</p>
     <mat-list>
@@ -56,32 +64,19 @@
         src="assets/imgs/00c.Charaters (6).png"
       />
     </mat-list>
-    <!-- <div class="d-flex">
+    <div class="d-flex">
       eigenes Bild verwenden:
       <input
         type="file"
-        class="file-input"
-        (change)="onFileSelected($event)"
-        #fileUpload
+        accept="image/jpeg, image/png"
+        (change)="getFile($event)"
       />
-
-      <div class="file-upload">
-        {{ fileName || "No file uploaded yet." }}
-
-        <button
-          mat-mini-fab
-          color="primary"
-          class="upload-btn"
-          (click)="fileUpload.click()"
-        >
-          <mat-icon>attach_file</mat-icon>
-        </button>
-      </div>
-    </div> -->
+      
+    </div>
 
     <div class="buttonDiv">
       <button
-        (click)="saveUser()"
+        (click)="save();"
         [disabled]="enableButton()"
         mat-raised-button
         color="primary"
