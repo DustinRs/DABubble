@@ -56,8 +56,6 @@ export class CreateChannelComponent {
     const querySnapshot = await getDocs(collection(this.firestore, 'Channels'));
     let channels = querySnapshot.docs.map((doc) => doc.data());
     let filteredName = channels.filter((c) => c['name'] === this.channel.name);
-    console.log(filteredName);
-    console.log(this.channel.name);
     
     if (filteredName === undefined || filteredName.length === 0) {
       await setDoc(

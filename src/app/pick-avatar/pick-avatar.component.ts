@@ -76,18 +76,15 @@ export class PickAvatarComponent {
       // let userName = this.userName.replace(/ /g, '%');
       await this.getImgUrl(this.storage, this.userName);
       this.saveUserCustomPicture(this.url);
-      console.log('ja');
     }
     if (!this.customPicture) {
       this.saveUser();
-      console.log('nein');
     }
   }
 
   async getImgUrl(storage: any, img: any) {
     await getDownloadURL(ref(storage))
       .then((url) => {
-console.log('url', url)
         this.url = url;
       })
   }
@@ -202,7 +199,6 @@ console.log('url', url)
   }
   async sendFile(storageRef: any, file: any) {
     await uploadBytes(storageRef, file).then((snapshot) => {
-      console.log('Uploaded a blob or file!', snapshot);
     });
   }
 }

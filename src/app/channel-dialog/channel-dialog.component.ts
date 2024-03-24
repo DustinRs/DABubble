@@ -57,7 +57,6 @@ export class ChannelDialogComponent {
   async ngOnInit() {
     this.getChannel();
     this.getFriends();
-    console.log('leude on init', this.peoples2);
   }
 
   async getChannel() {
@@ -99,7 +98,6 @@ export class ChannelDialogComponent {
       
       this.peoples3.push(element)
     }
-    console.log('leude nach add', this.peoples3);
     const editedChannel = doc(
       collection(this.firestore, 'Channels'),
       'C' + this.channelId 

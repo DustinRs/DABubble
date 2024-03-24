@@ -102,7 +102,6 @@ export class DashboardComponent implements OnInit {
       this.userInfo = this.userInfo[0];
       this.friends.unshift(this.userInfo);
     }
-    console.log(this.userInfo);
   }
   async ngOnInit() {
     const querySnapshot = await getDocs(collection(this.firestore, 'Channels'));
@@ -111,7 +110,6 @@ export class DashboardComponent implements OnInit {
     const chatroomsSnapshot = await getDocs(collection(this.firestore, 'Chatrooms'));
     let chatrooms = chatroomsSnapshot.docs.map((doc) => doc.data());
     this.chatrooms = chatrooms;
-    console.log(this.chatrooms);
   }
 
   logout() {
@@ -178,10 +176,6 @@ export class DashboardComponent implements OnInit {
     this.friendsFiltered = friendsFiltered;
     this.channelsFiltered = channelsFiltered;
     this.messagesFiltered = messagesFiltered;
-
-    console.log('messages', messagesFiltered);
-    // console.log('threads', threadData);
-    // console.log('searchInput', this.searchInput);
   }
 
   clearSearch() {

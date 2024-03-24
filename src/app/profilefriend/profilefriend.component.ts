@@ -32,7 +32,6 @@ export class ProfilefriendComponent {
     this.email = chatsFiltered[0]['email'];
     this.avatar = chatsFiltered[0]['avatar'];
     this.online = chatsFiltered[0]['online'];
-    console.log('info', chatsFiltered);
     
   }
 

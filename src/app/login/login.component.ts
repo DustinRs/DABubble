@@ -145,7 +145,6 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('loggedInUser', JSON.stringify(payload));
     }
     let loggedInUser = JSON.parse(sessionStorage['loggedInUser']);
-    console.log('loggedInUser =', loggedInUser);
     await setDoc(doc(this.firestore, 'Chatrooms', loggedInUser.name), {
       id: loggedInUser.name,
       avatars: [],

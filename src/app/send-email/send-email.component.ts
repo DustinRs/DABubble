@@ -53,7 +53,6 @@ export class SendEmailComponent {
     this.http.post<any>('https://formspree.io/f/xleqjpgz', formData)
       .subscribe(
         response => {
-          console.log('Form submitted successfully', response);
           let overlay = document.getElementById('overlay');
     overlay?.classList.add('right');
     setTimeout(() => {

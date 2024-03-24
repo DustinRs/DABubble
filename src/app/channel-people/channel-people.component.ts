@@ -36,13 +36,11 @@ export class ChannelPeopleComponent {
   openFriendProfile(name: any) {
     const dialog = this.dialog.open(ProfilefriendComponent);
     dialog.componentInstance.friendId = name;
-    console.log(this.peoples)
   }
 
   openProfile(name: any) {
     const dialog = this.dialog.open(ProfileComponent);
     let info = JSON.parse(sessionStorage['loggedInUser'])
     dialog.componentInstance.userInfo = info[0];
-    console.log(JSON.parse(sessionStorage['loggedInUser']))
   }
 }

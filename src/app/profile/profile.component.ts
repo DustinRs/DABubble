@@ -19,7 +19,6 @@ export class ProfileComponent {
   constructor(public dialogRef: MatDialogRef<ProfileComponent>) {}
 
   ngOnInit() {
-    console.log('info', this.userInfo);
     this.name = this.userInfo.Name || this.userInfo.name;
     this.email = this.userInfo.email;
     this.avatar = this.userInfo.avatar || this.userInfo.picture;

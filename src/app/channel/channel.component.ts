@@ -106,7 +106,6 @@ export class ChannelComponent {
     this.timestamps.push(timestamp);
     this.users.push(this.userInfo.Name);
     this.avatars.push(this.userInfo.avatar);
-    console.log(this.avatars);
     const editedChannel = doc(
       collection(this.firestore, 'Channels'),
       'C' + this.channelId
@@ -258,7 +257,6 @@ export class ChannelComponent {
     this.icons.push(emoji);
     div.classList.add('d-none');
     this.reactions = false;
-    console.log(emojiData.emoji);
   }
 
   reaction() {
@@ -278,7 +276,6 @@ export class ChannelComponent {
     this.iconsThread.push(emoji);
     div.classList.add('d-none');
     this.reactionsThread = false;
-    console.log(emojiData.emoji);
   }
 
   reactionThread() {

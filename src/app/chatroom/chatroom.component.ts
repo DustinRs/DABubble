@@ -91,7 +91,6 @@ export class ChatroomComponent {
     this.users = chatsFiltered[0]['users']; 
     this.chatAvatar = chatsFiltered[0]['avatar'];
     this.chatOnline = chatsFiltered[0]['online'];
-    console.log('this.messages',this.messages)
   }
 
   async sendMessage() {
@@ -101,7 +100,6 @@ export class ChatroomComponent {
     this.timestamps.push(timestamp);
     this.users.push(this.userInfo.Name);
     this.avatars.push(this.userInfo.avatar);
-    console.log(this.avatars);
     const editedChannel = doc(
       collection(this.firestore, 'Chatrooms'),
       this.chatId
@@ -142,7 +140,6 @@ export class ChatroomComponent {
     this.icons.push(emoji)
     div.classList.add('d-none');
     this.reactions = false;
-    console.log(emojiData.emoji)
   }
 
   reaction() {
