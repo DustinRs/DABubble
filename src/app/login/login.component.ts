@@ -17,8 +17,8 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { animate, style, transition, trigger } from '@angular/animations';
 import 'animate.css';
+
 
 @Component({
   selector: 'app-login',
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router) {
     const aCollection = collection(this.firestore, 'RegisteredUsers');
     this.items$ = collectionData(aCollection);
-    this.google = google;
+    this.google = google || this.google;
     this.userLogin = new Login();
     this.passwordFormControl = new FormControl('', [
       Validators.required,
@@ -81,8 +81,8 @@ export class LoginComponent implements OnInit {
     if (sessionStorage.getItem('played') !== 'played') {
       this.fadeOut();
     }
-    
-    this.google.accounts.id.initialize({
+    if (this.google) {
+      this.google.accounts.id.initialize({
       client_id:
         '79801300719-5msnj80prd403pds2ojodaoksucjig99.apps.googleusercontent.com',
       callback: (resp: any) => this.handleLogin(resp),
@@ -91,6 +91,8 @@ export class LoginComponent implements OnInit {
       document.getElementById('googleLink'),
       {}
     );
+    }
+    
   }
 
   fadeOut() {

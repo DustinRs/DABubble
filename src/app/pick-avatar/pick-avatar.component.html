@@ -29,7 +29,7 @@
       #imagePreview
       alt=""
     />
-    
+
     <h2>{{ userName }}</h2>
     <p>Aus der Liste wählen:</p>
     <mat-list>
@@ -67,28 +67,42 @@
     <div class="d-flex">
       eigenes Bild verwenden:
       <input
+        class="file-input"
         type="file"
         accept="image/jpeg, image/png"
         (change)="getFile($event)"
+        #fileUpload
       />
-      
+
+      <div class="file-upload">
+        {{ fileName || "Kein Bild ausgewählt." }}
+
+        <button
+          mat-mini-fab
+          color="primary"
+          class="upload-btn"
+          (click)="fileUpload.click()"
+        >
+          <mat-icon>attach_file</mat-icon>
+        </button>
+      </div>
     </div>
 
     <div class="buttonDiv">
       <button
-        (click)="save();"
+      id="saveButton"
+        (click)="save()"
         [disabled]="enableButton()"
         mat-raised-button
         color="primary"
       >
         Weiter
       </button>
+      <div id="loader-container" class="d-none">
+        <div id="loading"></div>
+      </div>
     </div>
   </mat-card>
-  <div class="linksBottom">
-    <a href="">Impressum</a>
-    <a href="">Datenschutz</a>
-  </div>
   <div id="overlay" class="overlay">
     <h1>Konto erfolgreich erstellt!</h1>
   </div>

@@ -49,6 +49,7 @@ export class PickAvatarComponent {
   customPicture = false;
   @ViewChild('imagePreview') imagePreview: any;
   url: any;
+  fileName: any;
 
   constructor(private router: Router) {
     const aCollection = collection(this.firestore, 'RegisteredUsers');
@@ -70,10 +71,13 @@ export class PickAvatarComponent {
   }
 
   async save() {
+    let button = document.getElementById('saveButton');
+    let loading = document.getElementById('loader-container');
+    button?.classList.add('d-none');
+    loading?.classList.remove('d-none');
     if (this.file) {
       this.customPicture = true;
       await this.sendFile(this.storage, this.file);
-      // let userName = this.userName.replace(/ /g, '%');
       await this.getImgUrl(this.storage, this.userName);
       this.saveUserCustomPicture(this.url);
     }
@@ -83,10 +87,9 @@ export class PickAvatarComponent {
   }
 
   async getImgUrl(storage: any, img: any) {
-    await getDownloadURL(ref(storage))
-      .then((url) => {
-        this.url = url;
-      })
+    await getDownloadURL(ref(storage)).then((url) => {
+      this.url = url;
+    });
   }
 
   async saveUserCustomPicture(picSource: any) {
@@ -163,6 +166,7 @@ export class PickAvatarComponent {
     if (this.customPicture) {
       this.imagePreview.nativeElement.value = null;
       this.customPicture = false;
+      this.fileName = 'Kein Bild ausgewählt.'
     }
     this.avatarPicked = true;
     this.imgPath = `assets/imgs/00c.Charaters (${id}).png`;
@@ -188,6 +192,7 @@ export class PickAvatarComponent {
         const imagePreview = document.getElementById(
           'imagePreview'
         ) as HTMLImageElement;
+        this.fileName = file.name;
         if (imagePreview) {
           imagePreview.src = reader.result as string;
         }
@@ -198,7 +203,6 @@ export class PickAvatarComponent {
     this.customPicture = true;
   }
   async sendFile(storageRef: any, file: any) {
-    await uploadBytes(storageRef, file).then((snapshot) => {
-    });
+    await uploadBytes(storageRef, file).then((snapshot) => {});
   }
 }
